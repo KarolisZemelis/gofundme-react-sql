@@ -1,11 +1,11 @@
-import UsersList from "../Components/UsersList";
-import PostsList from "../Components/PostsList";
+import DonatorsList from "../Components/Donations/DonatorsList";
+import StoriesList from "../Components/Stories/StoriesList";
 
 export default function Home() {
   return (
     <section className="main">
-      <UsersList />
-      <PostsList />
+      <DonatorsList />
+      <StoriesList />
     </section>
   );
 }

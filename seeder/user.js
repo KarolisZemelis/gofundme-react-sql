@@ -26,7 +26,7 @@ import md5 from 'md5';
 
 export function createUser() {
   return {
-    name: faker.internet.username(),
+    username: faker.internet.username(),
     email: faker.internet.email(),
     password: md5('123'),
     role: faker.helpers.arrayElement(['guest', 'admin', 'r_user']),

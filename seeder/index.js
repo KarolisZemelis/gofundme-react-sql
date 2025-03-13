@@ -23,9 +23,6 @@ stories.forEach((s) => {
     const request_amount = faker.number.int({ min: 10, max: 100000 })
     s.user_id = faker.number.int({ min: 1, max: usersCount });
     s.request_amount = request_amount;
-
-
-    // s.collected_amount = totalDonations
 });
 
 
@@ -109,7 +106,8 @@ CREATE TABLE stories (
     collected_amount int(11) NOT NULL,
     user_id int(10) UNSIGNED NULL,
     status tinyint(1) NOT NULL DEFAULT 0,
-    created_at date NOT NULL
+    created_at date NOT NULL,
+    finished tinyint(1) NOT NULL DEFAULT 0,
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 `
 con.query(sql, (err) => {
@@ -124,7 +122,7 @@ sql = `
 CREATE TABLE donations (
   id int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   story_id int(10) UNSIGNED NOT NULL,
-  user_id int(10) UNSIGNED NULL,
+  name varchar(100) NOT NULL,
   donation_amount int(10) NOT NULL,
   created_at date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -155,8 +153,7 @@ con.query(sql, (err) => {
 
 sql = `
     ALTER TABLE donations
-    ADD CONSTRAINT donations_ibfk_1 FOREIGN KEY (story_id) REFERENCES stories (id) ON DELETE CASCADE,
-    ADD CONSTRAINT donations_ibfk_2 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE SET NULL;
+    ADD CONSTRAINT donations_ibfk_1 FOREIGN KEY (story_id) REFERENCES stories (id) ON DELETE CASCADE;
 `;
 con.query(sql, (err) => {
     if (err) {
@@ -241,7 +238,7 @@ con.query(selectSql, (selectErr, results) => {
                 }
                 donations.push({
                     story_id: story.id,
-                    user_id: faker.number.int({ min: 0, max: usersCount }),
+                    name: faker.word.words({ count: { min: 1, max: 2 } }),
                     donation_amount: donationAmount,
                     created_at: faker.date.past({ years: 4.9 })
                 });
@@ -262,10 +259,10 @@ con.query(selectSql, (selectErr, results) => {
         })
         sql = `
         INSERT INTO donations
-        (story_id, user_id, donation_amount, created_at)
+        (story_id, name, donation_amount, created_at)
         VALUES ?
     `;
-        con.query(sql, [donations.map(donation => [donation.story_id, donation.user_id, donation.donation_amount, donation.created_at])], (err) => {
+        con.query(sql, [donations.map(donation => [donation.story_id, donation.name, donation.donation_amount, donation.created_at])], (err) => {
             if (err) {
                 console.log('Donations table seed error', err);
             } else {

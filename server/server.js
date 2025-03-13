@@ -37,31 +37,32 @@ con.connect(err => {
     console.log('Prisijungimas prie DB buvo sėkmingas');
 });
 
+const error500 = (res, err) => res.status(500).json(err)
 //auth middleware
-app.use((req, res, next) => {
-    const token = req.cookies['r2-token'] || 'no-token';
-    const sql = 'SELECT * FROM users WHERE session_id = ?';
-    con.query(sql, [token], (err, result) => {
-        if (err) {
-            res.status(500).send('Klaida bandant prisijungti');
-            return;
-        }
-        if (result.length === 0) {
-            req.user = {
-                role: 'guest',
-                name: 'Guest',
-                id: 0
-            }
-        } else {
-            req.user = {
-                role: result[0].role,
-                name: result[0].name,
-                id: result[0].id
-            }
-        }
-        next();
-    });
-});
+// app.use((req, res, next) => {
+//     const token = req.cookies['r2-token'] || 'no-token';
+//     const sql = 'SELECT * FROM users WHERE session_id = ?';
+//     con.query(sql, [token], (err, result) => {
+//         if (err) {
+//             res.status(500).send('Klaida bandant prisijungti');
+//             return;
+//         }
+//         if (result.length === 0) {
+//             req.user = {
+//                 role: 'guest',
+//                 name: 'Guest',
+//                 id: 0
+//             }
+//         } else {
+//             req.user = {
+//                 role: result[0].role,
+//                 name: result[0].name,
+//                 id: result[0].id
+//             }
+//         }
+//         next();
+//     });
+// });
 
 app.post('/login', (req, res) => {
     const { name, password } = req.body;
@@ -122,7 +123,6 @@ app.get('/get-user', (req, res) => {
     }, 1000);
 });
 
-
 app.post('/logout', (req, res) => {
     setTimeout(_ => {
         const token = req.cookies['r2-token'] || 'no-token';
@@ -150,7 +150,49 @@ app.post('/logout', (req, res) => {
 
 
 // Start server
+//USERS
+app.get('/donators', (req, res) => {
+    const sql = `
+        SELECT id, name, donation_amount
+        FROM donations
+    `
+    con.query(sql, (err, result) => {
+        if (err) return error500(res, err)
+        res.json({
+            success: true,
+            db: result
+        });
+    })
 
+})
+
+//Stories
+app.get('/stories', (req, res) => {
+    const sql = `
+        SELECT
+    s.id,
+    s.name,
+    s.text,
+    s.image,
+    s.request_amount,
+    s.collected_amount,
+    u.username
+FROM
+    stories s
+JOIN
+    users u ON s.user_id = u.id
+WHERE
+    s.status = 1;
+    `
+    con.query(sql, (err, result) => {
+        if (err) return error500(res, err)
+        res.json({
+            success: true,
+            db: result
+        });
+    })
+
+})
 
 app.listen(port, () => {
     console.log(`Serveris pasiruošęs ir laukia ant ${port} porto!`);
