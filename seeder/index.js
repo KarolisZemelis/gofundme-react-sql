@@ -5,8 +5,8 @@ import { createStory } from './story.js';
 import mysql from 'mysql';
 
 
-const usersCount = 5;
-const storyCount = 10;
+const usersCount = 50;
+const storyCount = 30;
 
 
 const users = faker.helpers.multiple(createUser, {
@@ -77,8 +77,7 @@ con.query(sql, (err) => {
 });
 
 
-sql = `
-    CREATE TABLE users (
+sql = `CREATE TABLE users (
       id int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
       username varchar(100) NOT NULL,
       email varchar(100) NOT NULL UNIQUE,
@@ -86,7 +85,6 @@ sql = `
       role enum('guest','admin','user','') NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
      `
-
 con.query(sql, (err) => {
     if (err) {
         console.log('Users table create error', err);
@@ -95,9 +93,7 @@ con.query(sql, (err) => {
     }
 });
 
-
-sql = `
-CREATE TABLE stories (
+sql = `CREATE TABLE stories (
     id int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name varchar(100) NOT NULL,
     text text NOT NULL,
@@ -107,7 +103,7 @@ CREATE TABLE stories (
     user_id int(10) UNSIGNED NULL,
     status tinyint(1) NOT NULL DEFAULT 0,
     created_at date NOT NULL,
-    finished tinyint(1) NOT NULL DEFAULT 0,
+    finished tinyint(1) NOT NULL DEFAULT 0
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 `
 con.query(sql, (err) => {
@@ -118,8 +114,7 @@ con.query(sql, (err) => {
     }
 });
 
-sql = `
-CREATE TABLE donations (
+sql = `CREATE TABLE donations (
   id int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   story_id int(10) UNSIGNED NOT NULL,
   name varchar(100) NOT NULL,
@@ -135,8 +130,7 @@ con.query(sql, (err) => {
     }
 });
 
-sql = `
-    CREATE TABLE sessions (
+sql = `CREATE TABLE sessions (
     id int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     user_id int(10) UNSIGNED NOT NULL,
     token char(32) NOT NULL,
@@ -151,8 +145,9 @@ con.query(sql, (err) => {
     }
 });
 
-sql = `
-    ALTER TABLE donations
+
+
+sql = ` ALTER TABLE donations
     ADD CONSTRAINT donations_ibfk_1 FOREIGN KEY (story_id) REFERENCES stories (id) ON DELETE CASCADE;
 `;
 con.query(sql, (err) => {
@@ -163,9 +158,7 @@ con.query(sql, (err) => {
     }
 });
 
-
-sql = `
-ALTER TABLE stories
+sql = `ALTER TABLE stories
   ADD CONSTRAINT stories_ibfk_1 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE SET NULL;
 `;
 con.query(sql, (err) => {
@@ -176,8 +169,7 @@ con.query(sql, (err) => {
     }
 });
 
-sql = `
-ALTER TABLE sessions
+sql = `ALTER TABLE sessions
   ADD CONSTRAINT sessions_ibfk_1 FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE;
 `;
 con.query(sql, (err) => {
@@ -189,8 +181,7 @@ con.query(sql, (err) => {
 });
 
 
-sql = `
-    INSERT INTO users
+sql = `INSERT INTO users
     (username, email, password, role)
     VALUES ?
 `;
@@ -202,9 +193,7 @@ con.query(sql, [users.map(user => [user.username, user.email, user.password, use
     }
 });
 
-
-sql = `
-  INSERT INTO stories
+sql = `INSERT INTO stories
   (name, text, image, request_amount, collected_amount, user_id, status, created_at)
   VALUES ?
 `;
@@ -229,20 +218,23 @@ con.query(selectSql, (selectErr, results) => {
             let donationPercentage = faker.number.int({ min: 0, max: 100 }) / 100;
             const targetDonationAmount = story.request_amount * donationPercentage;
             let totalDonations = 0;
+            while (totalDonations <= targetDonationAmount) {
+                const donationAmount = faker.number.int({ min: 0, max: Math.min(targetDonationAmount - totalDonations, story.request_amount - totalDonations) });
 
-            do {
-                const donationAmount = faker.number.int({ min: 0, max: targetDonationAmount });
-                totalDonations += donationAmount;
-                if (totalDonations > story.request_amount) {
-                    break
+                if (donationAmount === 0) {
+                    break;
                 }
+                if (totalDonations + donationAmount > story.request_amount) {
+                    break;
+                }
+                totalDonations += donationAmount;
                 donations.push({
                     story_id: story.id,
                     name: faker.word.words({ count: { min: 1, max: 2 } }),
                     donation_amount: donationAmount,
                     created_at: faker.date.past({ years: 4.9 })
                 });
-            } while (totalDonations <= targetDonationAmount)
+            }
             const updateSql = `
                 UPDATE stories 
                 SET collected_amount = ? 
@@ -257,8 +249,7 @@ con.query(selectSql, (selectErr, results) => {
             });
 
         })
-        sql = `
-        INSERT INTO donations
+        sql = `INSERT INTO donations
         (story_id, name, donation_amount, created_at)
         VALUES ?
     `;

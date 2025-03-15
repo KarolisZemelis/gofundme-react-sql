@@ -9,7 +9,7 @@ export default function useDonators() {
 
   useEffect((_) => {
     axios
-      .get(C.SERVER_URL + "stories")
+      .get(C.SERVER_URL + "stories/1")
       .then((res) => {
         console.log("axios", res);
         dispatchStories({

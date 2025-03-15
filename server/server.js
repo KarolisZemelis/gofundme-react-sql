@@ -5,10 +5,12 @@ import md5 from 'md5';
 import cookieParser from 'cookie-parser';
 import { v4 as uuidv4 } from 'uuid'
 
+const postsPerPage = 7;
+
 const app = express();
 const port = 3333;
 
-const frontURL = 'http://localhost:5173';
+const frontURL = 'http://localhost:5174';
 const serverURL = `http://localhost:${port}`;
 
 app.use(cookieParser());
@@ -167,7 +169,13 @@ app.get('/donators', (req, res) => {
 })
 
 //Stories
-app.get('/stories', (req, res) => {
+app.get('/stories/:page', (req, res) => {
+
+    const page = parseInt(req.params.page);
+    if (!Number.isInteger(page) || page < 1) {
+        return res.status(400).json({ success: false, error: 'Invalid page number' });
+    }
+    const offset = (page - 1) * postsPerPage;
     const sql = `
         SELECT
     s.id,
@@ -182,9 +190,10 @@ FROM
 JOIN
     users u ON s.user_id = u.id
 WHERE
-    s.status = 1;
+    s.status = 1
+    LIMIT ? OFFSET ?
     `
-    con.query(sql, (err, result) => {
+    con.query(sql, [postsPerPage, offset], (err, result) => {
         if (err) return error500(res, err)
         res.json({
             success: true,
