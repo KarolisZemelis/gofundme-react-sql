@@ -59,11 +59,11 @@ section.main {
   }
 }
 
-main {
+.main {
   display: flex;
   flex-direction: column;
   .hero {
-    height: 100vh; /* Full viewport height */
+    height: 50vh; /* Full viewport height */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,10 +79,35 @@ main {
       margin: 10px 0;
     }
 
-    .hero img {
-      width: 100%; /* Ensure the image is responsive */
-      max-width: 100%; /* Prevent the image from exceeding the container's width */
-      height: auto; /* Maintain aspect ratio */
+    .round-image-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ddd; /* Background when empty */
+
+      img {
+        width: 93%;
+        height: 93%;
+        border-radius: 50%;
+        object-fit: cover;
+        z-index: 2;
+        margin: 0 auto;
+        display: block;
+      }
+    }
+    .round-image-container::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: var(--progress, 50%); /* Dynamically controls the fill */
+      background-color: #4caf50; /* Progress color */
+      transition: height 0.5s ease-in-out;
     }
   }
   .mainMiddle {

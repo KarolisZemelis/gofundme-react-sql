@@ -11,7 +11,6 @@ export default function useDonators() {
     axios
       .get(C.SERVER_URL + "stories/1")
       .then((res) => {
-        console.log("axios", res);
         dispatchStories({
           type: A.LOAD_STORIES_FROM_SERVER,
           payload: res.data.db,

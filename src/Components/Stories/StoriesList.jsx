@@ -4,7 +4,6 @@ import StoryInList from "./StoryInList";
 
 export default function StoriesList() {
   const { stories } = useContext(Data);
-  console.log("storiai", stories);
   if (null === stories) {
     return (
       <div className="bin bin-30">

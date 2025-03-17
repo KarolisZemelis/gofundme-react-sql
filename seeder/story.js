@@ -25,7 +25,8 @@ export function createStory() {
     return {
         name: faker.word.words({ count: { min: 1, max: 10 } }),
         text: faker.word.words({ count: { min: 10, max: 111 } }),
-        image: faker.image.url(),
+        // image: faker.image.url(),
+        image: `https://picsum.photos/seed/${faker.string.uuid()}/300/300`,
         status: faker.number.int({ min: 0, max: 1 }),
         created_at: faker.date.past({ years: 5 }),
     }
