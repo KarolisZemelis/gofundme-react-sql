@@ -23,7 +23,7 @@ import { faker } from '@faker-js/faker';
 export function createStory() {
 
     return {
-        name: faker.word.words({ count: { min: 1, max: 10 } }),
+        name: faker.word.words({ count: { min: 1, max: 5 } }),
         text: faker.word.words({ count: { min: 10, max: 111 } }),
         // image: faker.image.url(),
         image: `https://picsum.photos/seed/${faker.string.uuid()}/300/300`,

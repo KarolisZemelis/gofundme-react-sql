@@ -8,9 +8,9 @@ import { v4 as uuidv4 } from 'uuid'
 const postsPerPage = 7;
 
 const app = express();
-const port = 3333;
+const port = 4444;
 
-const frontURL = 'http://localhost:5174';
+const frontURL = 'http://localhost:5176';
 const serverURL = `http://localhost:${port}`;
 
 app.use(cookieParser());
