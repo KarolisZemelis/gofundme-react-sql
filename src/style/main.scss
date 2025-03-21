@@ -1,4 +1,8 @@
 @use "var" as v;
+@use "stories" as s;
+@use "nav";
+@use "login";
+@use "hero";
 
 * {
   box-sizing: border-box;
@@ -26,7 +30,7 @@ section.main {
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 0 20px;
+  padding: 0px;
   max-width: v.$xl;
 }
 
@@ -62,70 +66,8 @@ section.main {
 .main {
   display: flex;
   flex-direction: column;
-  .hero {
-    height: 50vh; /* Full viewport height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px; /* Adds some padding around the content */
-    background-color: #f0f0f0; /* Or any background you prefer */
-    .hero-content {
-      text-align: center;
-      color: #fff; /* Adjust for readability */
-    }
 
-    .hero h1 {
-      font-size: 2.5rem; /* Default font size for mobile */
-      margin: 10px 0;
-    }
-
-    .round-image-container {
-      position: relative;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #ddd; /* Background when empty */
-
-      img {
-        width: 93%;
-        height: 93%;
-        border-radius: 50%;
-        object-fit: cover;
-        z-index: 2;
-        margin: 0 auto;
-        display: block;
-      }
-    }
-    .round-image-container::before {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: var(--progress, 50%); /* Dynamically controls the fill */
-      background-color: #4caf50; /* Progress color */
-      transition: height 0.5s ease-in-out;
-    }
-  }
   .mainMiddle {
     display: flex;
-  }
-  /* For mobile screens specifically */
-  @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 1.8rem; /* Adjust the font size for smaller screens */
-    }
-
-    .hero img {
-      width: 80%; /* Adjust the image size */
-      margin-top: 20px;
-    }
-
-    .hero-content {
-      padding: 20px; /* Adjust padding for smaller devices */
-    }
   }
 }

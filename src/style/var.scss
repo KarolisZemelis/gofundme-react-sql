@@ -2,6 +2,53 @@ $pt: "PT Serif", serif;
 $ibm: "IBM Plex Sans", sans-serif;
 $audio: "Audiowide", sans-serif;
 
+$catalina-blue: #063970;
+$eastern-blue: #1e81b0;
+$burnt-sienna: #e28743;
+$tacao: #eab676;
+$glacier: #76b5c5;
+$eternity: #21130d;
+$burnt-umber: #873e23;
+$powder-blue: #abdbe3;
+$green-white: #eeeee4;
+$chathams-blue: #154c79;
+
+// Primary Colors
+$primary-color: $catalina-blue;
+
+// Secondary Colors
+$secondary-color-1: $burnt-sienna;
+$secondary-color-2: $eastern-blue;
+
+// Accent Colors
+$accent-color-light-bg: $green-white;
+$accent-color-dark: $eternity;
+$accent-color-warm: $burnt-umber;
+$accent-color-soft-blue: $powder-blue;
+$accent-color-light-orange: $tacao;
+$accent-color-desaturated-blue: $glacier;
+$accent-color-darker-blue: $chathams-blue;
+
+// You can also create maps for easier access:
+$primary-colors: (
+  primary: $primary-color,
+);
+
+$secondary-colors: (
+  secondary-1: $secondary-color-1,
+  secondary-2: $secondary-color-2,
+);
+
+$accent-colors: (
+  light-bg: $accent-color-light-bg,
+  dark: $accent-color-dark,
+  warm: $accent-color-warm,
+  soft-blue: $accent-color-soft-blue,
+  light-orange: $accent-color-light-orange,
+  desaturated-blue: $accent-color-desaturated-blue,
+  darker-blue: $accent-color-darker-blue,
+);
+
 $black: #201520;
 $white: #ffffff;
 $gray: #7f7f7f;

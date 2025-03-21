@@ -29,6 +29,6 @@ export function createUser() {
     username: faker.internet.username(),
     email: faker.internet.email(),
     password: md5('123'),
-    role: faker.helpers.arrayElement(['guest', 'admin', 'r_user']),
+    role: faker.helpers.arrayElement(['guest', 'admin', 'user']),
   };
 }

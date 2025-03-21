@@ -1,20 +1,26 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router";
 import useAuth from "../Hooks/useAuth";
+import Auth from "../Contexts/Auth";
 
-const defForm = { name: "", password: "" };
+const defForm = { username: "", password: "" };
 
 export default function Login() {
   const [form, setForm] = useState(defForm);
-  const { setLoginForm } = useAuth();
+  const { setUser } = useContext(Auth);
+
+  const { setLoginForm } = useAuth(setUser);
+
   const handleChange = (e) => {
     setForm((f) => {
       return { ...f, [e.target.name]: e.target.value };
     });
   };
+
   const login = (_) => {
     setLoginForm(form);
   };
+
   return (
     <section className="main login-page">
       <div className="login-page__box">
@@ -22,8 +28,8 @@ export default function Login() {
           <label>Name</label>
           <input
             type="text"
-            name="name"
-            value={form.name}
+            name="username"
+            value={form.username}
             onChange={handleChange}
           />
         </div>

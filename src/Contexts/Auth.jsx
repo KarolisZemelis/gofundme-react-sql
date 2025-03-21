@@ -5,20 +5,13 @@ const Auth = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const { getUser, responseOkUser } = useAuth();
+  const { getUser } = useAuth(setUser);
 
   useEffect((_) => {
     getUser();
+    console.log("user", user);
   }, []);
 
-  useEffect(
-    (_) => {
-      if (null === responseOkUser) {
-        return;
-      }
-    },
-    [responseOkUser]
-  );
   return (
     <Auth.Provider value={{ user, setUser }}>
       {null === user ? <span>Authorizing...</span> : children}

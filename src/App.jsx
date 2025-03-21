@@ -6,10 +6,12 @@ import Page404 from "./Pages/Page404";
 import Body from "./Components/Body";
 import { DataProvider } from "./Contexts/Data";
 import Login from "./Pages/Login";
+import Logout from "./Pages/Logout";
+import { AuthProvider } from "./Contexts/Auth";
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <DataProvider>
         <Body>
           <Nav />
@@ -17,11 +19,12 @@ function App() {
             <Route index element={<Home />} />
             <Route path="aboutUs" element={<About />} />
             <Route path="login" element={<Login />} />
+            <Route path="logout" element={<Logout />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </Body>
       </DataProvider>
-    </>
+    </AuthProvider>
   );
 }
 

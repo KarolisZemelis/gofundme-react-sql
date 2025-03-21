@@ -3,6 +3,7 @@ import { faker } from '@faker-js/faker';
 import { createUser } from './user.js';
 import { createStory } from './story.js';
 import mysql from 'mysql';
+import md5 from 'md5';
 
 
 const usersCount = 50;
@@ -12,7 +13,7 @@ const storyCount = 30;
 const users = faker.helpers.multiple(createUser, {
     count: usersCount,
 });
-
+console.log(users)
 const stories = faker.helpers.multiple(createStory, {
     count: storyCount,
 });
@@ -82,7 +83,7 @@ sql = `CREATE TABLE users (
       username varchar(100) NOT NULL,
       email varchar(100) NOT NULL UNIQUE,
       password char(32) NOT NULL,
-      role enum('guest','admin','user','') NOT NULL
+      role enum('guest','admin','user') NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
      `
 con.query(sql, (err) => {
@@ -186,8 +187,22 @@ sql = `INSERT INTO users
     VALUES ?
 `;
 con.query(sql, [users.map(user => [user.username, user.email, user.password, user.role])], (err) => {
+    console.log(users)
     if (err) {
         console.log('Users table seed error', err);
+    } else {
+        console.log('Users table was seeded');
+    }
+});
+sql = `INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?);`;
+
+const password = md5('123')
+const values = ['admin', 'admin@admin.com', password, 'admin'];
+
+con.query(sql, values, (err) => {
+    console.log(users); // Assuming 'users' is defined elsewhere and you want to log it
+    if (err) {
+        console.error('Users table seed error', err);
     } else {
         console.log('Users table was seeded');
     }
