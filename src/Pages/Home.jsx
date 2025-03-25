@@ -8,8 +8,8 @@ export default function Home() {
     <section className="main">
       <Hero />
       <div className="mainMiddle">
-        <DonatorsList />
         <StoriesList />
+        <DonatorsList />
       </div>
     </section>
   );

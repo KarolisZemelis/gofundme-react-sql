@@ -1,141 +1,142 @@
 @use "var" as v;
 
+// .navContainer {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding-right: 35px;
+//   width: 100%;
+//   box-sizing: border-box;
+//   position: sticky;
+//   top: 0;
+//   background-color: rgba(v.$burnt-sienna, 0.5);
+//   z-index: 100;
+
+//   h1 {
+//     margin: 0;
+//     justify-self: center; // Center the logo horizontally
+//   }
+//   img {
+//     width: 120px;
+//     height: 120px;
+//     padding: 0;
+//     margin: 0;
+//   }
+//   .burger {
+//     display: none;
+//   }
+//   @media (max-width: 1023px) {
+//     .menu {
+//       display: none;
+//     }
+//     .nav-right {
+//       display: none;
+//     }
+
+//     .burger {
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: space-between;
+//       width: 30px;
+//       height: 20px;
+//       cursor: pointer;
+//       transition: opacity 0.2s ease-in-out; // Add overall transition for hover effect
+
+//       .bar {
+//         width: 100%;
+//         height: 4px;
+//         background-color: black;
+//         transition: transform 0.3s ease-in-out,
+//           background-color 0.2s ease-in-out; // transition for hover color change
+//       }
+
+//       &:hover {
+//         opacity: 0.7; // Example hover effect: slight transparency
+//       }
+
+//       &.active {
+//         .bar {
+//           &:nth-child(1) {
+//             transform: translateY(8px) rotate(45deg);
+//           }
+//           &:nth-child(2) {
+//             opacity: 0;
+//           }
+//           &:nth-child(3) {
+//             transform: translateY(-8px) rotate(-45deg);
+//           }
+//         }
+//       }
+
+//       &.active,
+//       &:focus {
+//         // add focus style for accessibility
+//         .bar {
+//           background-color: darkgray; // change color when active or focused.
+//         }
+//       }
+
+//       &:not(.active):hover {
+//         //hover effect on bars when not active
+//         .bar {
+//           background-color: gray;
+//         }
+//       }
+//     }
+//   }
+// }
+
+//MOBILE
+.menu,
+.login_logout {
+  display: none;
+}
+
 .navContainer {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  height: 4rem;
+  background-color: rgba(v.$secondary-color, 0.3);
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 1rem;
   position: sticky;
   top: 0;
-  background-color: rgba(163, 159, 159, 0.5);
   z-index: 100;
-
-  h1 {
-    margin: 0;
-    justify-self: center; // Center the logo horizontally
-  }
-  img {
-    width: 75px;
-    height: 75px;
-    padding: 0;
-    margin: 0;
-  }
-  .burger {
-    display: none;
-  }
-  @media (max-width: 1023px) {
-    .menu {
-      display: none;
-    }
-    .burger {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 30px;
-      height: 20px;
-      cursor: pointer;
-      transition: opacity 0.2s ease-in-out; // Add overall transition for hover effect
-
-      .bar {
-        width: 100%;
-        height: 4px;
-        background-color: black;
-        transition: transform 0.3s ease-in-out,
-          background-color 0.2s ease-in-out; // transition for hover color change
-      }
-
-      &:hover {
-        opacity: 0.7; // Example hover effect: slight transparency
-      }
-
-      &.active {
-        .bar {
-          &:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-          }
-          &:nth-child(2) {
-            opacity: 0;
-          }
-          &:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-          }
-        }
-      }
-
-      &.active,
-      &:focus {
-        // add focus style for accessibility
-        .bar {
-          background-color: darkgray; // change color when active or focused.
-        }
-      }
-
-      &:not(.active):hover {
-        //hover effect on bars when not active
-        .bar {
-          background-color: gray;
-        }
-      }
-    }
+  .logo {
+    width: 3rem;
+    height: 3rem;
   }
 }
 
-.navContainerMobile {
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 500;
+.burger {
+  width: 2rem;
+  height: 2rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(176, 148, 202);
-
-  .menu {
+  flex-direction: column;
+  gap: 0.5rem;
+  position: absolute;
+  right: 1rem;
+  z-index: 1000;
+  .bar {
     width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: black;
-    position: relative; /* Ensure it stays within .navContainerMobile */
-    z-index: 1002; /* Higher than the parent */
-    a {
-      display: block; /* Makes the link behave like a block element (occupies the full width) */
-      color: white; /* Sets the text color to white for contrast against the black background */
-      text-decoration: none; /* Removes the underline by default */
-      font-size: 1.5rem; /* Adjusts the font size for better readability */
-      padding: 15px; /* Adds padding for clickable area */
-      text-align: center; /* Centers the text within the link */
-      transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
-    }
-
-    /* Hover effect */
-    a:hover {
-      background-color: rgba(
-        255,
-        255,
-        255,
-        0.2
-      ); /* Adds a light background on hover */
-      color: rgb(176, 148, 202); /* Changes text color on hover */
-    }
+    height: 4px;
+    background-color: v.$black;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   }
+  &.clicked {
+    .bar:nth-child(1) {
+      transform: translateY(10px) rotate(40deg);
+      background-color: v.$white;
+    }
 
-  .close-btn {
-    display: block;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: white;
-    z-index: 1003;
-    cursor: pointer;
+    .bar:nth-child(2) {
+      opacity: 0;
+      background-color: v.$white;
+    }
+
+    .bar:nth-child(3) {
+      transform: translateY(-14px) rotate(-45deg);
+      background-color: v.$white;
+    }
   }
 }

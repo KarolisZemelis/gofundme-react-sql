@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router";
+import { DataProvider } from "./Contexts/Data";
+import { AuthProvider } from "./Contexts/Auth";
+import Nav from "./Components/Navigation/Nav";
+import Body from "./Components/Body";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
-import Nav from "./Components/Navigation/Nav";
 import Page404 from "./Pages/Page404";
-import Body from "./Components/Body";
-import { DataProvider } from "./Contexts/Data";
 import Login from "./Pages/Login";
 import Logout from "./Pages/Logout";
-import { AuthProvider } from "./Contexts/Auth";
 
 function App() {
   return (

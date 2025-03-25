@@ -1,8 +1,21 @@
-import React from "react";
+import { useState } from "react";
 
-export default function BurgerMenu({ setMobileMenu }) {
+export default function BurgerMenu({
+  mobileMenu,
+  setMobileMenu,
+  clickedBars,
+  setclickedBars,
+}) {
+  const handleClick = () => {
+    // const newActive = !clickedBars;
+    setclickedBars(!clickedBars);
+    setMobileMenu(mobileMenu === null ? "active" : null);
+  };
   return (
-    <div className="burger" onClick={(_) => setMobileMenu("active")}>
+    <div
+      className={`burger ${clickedBars ? "clicked" : ""}`}
+      onClick={handleClick}
+    >
       <div className="bar"></div>
       <div className="bar"></div>
       <div className="bar"></div>

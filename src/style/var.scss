@@ -2,61 +2,20 @@ $pt: "PT Serif", serif;
 $ibm: "IBM Plex Sans", sans-serif;
 $audio: "Audiowide", sans-serif;
 
-$catalina-blue: #063970;
-$eastern-blue: #1e81b0;
-$burnt-sienna: #e28743;
-$tacao: #eab676;
-$glacier: #76b5c5;
-$eternity: #21130d;
-$burnt-umber: #873e23;
-$powder-blue: #abdbe3;
-$green-white: #eeeee4;
-$chathams-blue: #154c79;
-
 // Primary Colors
-$primary-color: $catalina-blue;
+$primary-color: #107c41; // Dark Green (Main brand color)
+$secondary-color: #00b67a; // Light Green (Accent color)
 
-// Secondary Colors
-$secondary-color-1: $burnt-sienna;
-$secondary-color-2: $eastern-blue;
-
-// Accent Colors
-$accent-color-light-bg: $green-white;
-$accent-color-dark: $eternity;
-$accent-color-warm: $burnt-umber;
-$accent-color-soft-blue: $powder-blue;
-$accent-color-light-orange: $tacao;
-$accent-color-desaturated-blue: $glacier;
-$accent-color-darker-blue: $chathams-blue;
-
-// You can also create maps for easier access:
-$primary-colors: (
-  primary: $primary-color,
-);
-
-$secondary-colors: (
-  secondary-1: $secondary-color-1,
-  secondary-2: $secondary-color-2,
-);
-
-$accent-colors: (
-  light-bg: $accent-color-light-bg,
-  dark: $accent-color-dark,
-  warm: $accent-color-warm,
-  soft-blue: $accent-color-soft-blue,
-  light-orange: $accent-color-light-orange,
-  desaturated-blue: $accent-color-desaturated-blue,
-  darker-blue: $accent-color-darker-blue,
-);
-
-$black: #201520;
+// Neutral Colors
 $white: #ffffff;
-$gray: #7f7f7f;
+$light-gray: #f7f7f7;
+$medium-gray: #d9d9d9;
+$dark-gray: #333333;
+$black: #201520;
 
-$blue: #1e90ff;
-$green: #32cd32;
-$yellow: #ffd700;
-$violet: #350661;
+// Supporting Colors
+$attention-color: #ffdd67; // Soft Yellow (Highlights)
+$alert-color: #e60023; // Red (Warnings, Alerts)
 
 $xl: 1200px;
 $l: 992px;

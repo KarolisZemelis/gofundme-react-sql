@@ -1,16 +1,16 @@
 import { NavLink, useLocation } from "react-router";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../../style/nav.scss";
 import NavBurger from "./NavBurger";
 import MobileNav from "./MobileNav";
 import { HIDE_NAV_PATHS } from "../../Constants/main";
-import { useContext } from "react";
 import Auth from "../../Contexts/Auth";
 import logo from "../images/logobg.png";
 
 export default function Nav() {
   const [mobileMenu, setMobileMenu] = useState(null);
-
+  const [clickedBars, setclickedBars] = useState(false);
+  console.log(mobileMenu);
   const { pathname } = useLocation();
 
   const { user } = useContext(Auth);
@@ -20,8 +20,7 @@ export default function Nav() {
   }
   return (
     <nav className="navContainer">
-      <h1>GoFund!</h1>
-      <img src={logo} alt="heroStory.name" />
+      <img src={logo} className="logo" />
       <div className="menu">
         <NavLink to="/" end>
           Home
@@ -33,23 +32,33 @@ export default function Nav() {
           About Us
         </NavLink>
       </div>
-      <div className="nav-right">
+      <div className="login_logout">
         {user.role === "guest" && (
           <NavLink to="/login" end>
             Login
           </NavLink>
         )}
         {user.role !== "guest" && (
-          <>
-            <div className="nav-right__username">{user.name}</div>
+          <div className="logout">
+            <div className="nav-right__username">{user.username}</div>
             <NavLink to="/logout" end>
               Logout
             </NavLink>
-          </>
+          </div>
         )}
       </div>
-      <NavBurger setMobileMenu={setMobileMenu} />
-      {mobileMenu !== null ? <MobileNav setMobileMenu={setMobileMenu} /> : null}
+      <NavBurger
+        mobileMenu={mobileMenu}
+        setMobileMenu={setMobileMenu}
+        clickedBars={clickedBars}
+        setclickedBars={setclickedBars}
+      />
+      {mobileMenu !== null ? (
+        <MobileNav
+          setMobileMenu={setMobileMenu}
+          setclickedBars={setclickedBars}
+        />
+      ) : null}
     </nav>
   );
 }

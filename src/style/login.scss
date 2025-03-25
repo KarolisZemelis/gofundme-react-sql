@@ -10,7 +10,7 @@
   &__box {
     width: 400px;
     padding: 20px;
-    background-color: v.$violet;
+    background-color: v.$primary-color;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     &__row {
       display: flex;
@@ -30,7 +30,7 @@
 
       button {
         padding: 7px 20px;
-        background-color: v.$yellow;
+        background-color: v.$attention-color;
         border: none;
         margin-top: 40px;
         cursor: pointer;

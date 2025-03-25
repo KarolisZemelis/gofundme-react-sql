@@ -2,7 +2,6 @@ import Data from "../Contexts/Data";
 import { useState, useContext, useEffect, useRef } from "react";
 import getRandomInt from "../Constants/getRandomInt";
 import capitalizeFirstLetters from "../Constants/capitalize";
-import logo from "../Components/images/logobg.png";
 
 export default function Hero() {
   const { stories } = useContext(Data);
@@ -70,16 +69,19 @@ export default function Hero() {
         }
         {
           <div className="amountContainer">
-            <p>{heroStory.collected_amount}/</p>
-            <p>{heroStory.request_amount}</p>
+            <h4>
+              {heroStory.collected_amount} € <b>/</b>
+            </h4>
+
+            <h4>{heroStory.request_amount} €</h4>
           </div>
         }
       </div>
 
-      <div className="sloganContainer">
+      {/* <div className="sloganContainer">
         <h1>Fund your dreams!</h1>
         <img src={logo} alt="heroStory.name" />
-      </div>
+      </div> */}
     </div>
   );
 }
