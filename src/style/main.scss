@@ -17,78 +17,15 @@ body {
   font-size: 16px;
 }
 
-// .app {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: flex-start;
-//   width: 100%;
-//   min-height: 100vh;
-// }
+.heroBodyBreak {
+  background-color: v.$secondary-color;
+  padding: 1rem;
+  color: v.$attention-color;
+  text-align: center;
+}
 
-// section.main {
-//   display: flex;
-//   justify-content: center;
-//   width: 100%;
-//   padding: 0px;
-//   max-width: v.$xl;
-// }
-
-// .bin {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: flex-start;
-//   width: 100%;
-//   &.bin-20 {
-//     width: 20%;
-//   }
-//   &.bin-30 {
-//     width: 30%;
-//   }
-//   &.bin-40 {
-//     width: 40%;
-//   }
-//   &.bin-50 {
-//     width: 50%;
-//   }
-//   &.bin-60 {
-//     width: 60%;
-//   }
-//   &.bin-70 {
-//     width: 70%;
-//   }
-//   &.bin-80 {
-//     width: 80%;
-//   }
-// }
-
-// .main {
-//   display: flex;
-//   flex-direction: column;
-
-//   .mainMiddle {
-//     display: flex;
-//     flex-direction: column;
-//     .bin {
-//       width: 100%;
-//       .stories-list {
-//         padding: 20px;
-//         .stories-list__story {
-//           list-style-type: none;
-//           display: flex;
-//           flex-direction: column;
-//           justify-content: center;
-//           align-items: center;
-//           .stories-list__story__name {
-//             width: 100%;
-//             height: 150px;
-//             background-repeat: no-repeat;
-//             // back
-//             border-radius: 10px;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+.mainMiddle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

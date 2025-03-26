@@ -12,7 +12,7 @@ export default function StoriesList() {
     );
   }
   return (
-    <div className="bin">
+    <div className="stories-bin">
       <h1>Stories</h1>
       <ul className="stories-list">
         {stories.map((s) => (
