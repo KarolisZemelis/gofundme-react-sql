@@ -1,99 +1,77 @@
 @use "var" as v;
 
-// .hero {
-//   height: 50vh; /* Full viewport height */
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 20px; /* Adds some padding around the content */
-//   // background-color: v.$secondary-color-1;
-//   width: 100%;
-//   h1 {
-//     font-size: 2.5rem; /* Default font size for mobile */
-//     margin: 10px 0;
-//   }
-//   .randomStory {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     flex-direction: column;
-//     h3 {
-//       margin: 10px;
-//       font-size: 32px;
-//       text-align: center;
-//     }
-//     .round-image-container {
-//       position: relative;
-//       width: 200px;
-//       height: 200px;
-//       border-radius: 50%;
-//       overflow: hidden;
-//       display: flex;
-//       justify-content: center;
-//       align-items: center;
-//       background-color: #ddd; /* Background when empty */
-
-//       img {
-//         width: 93%;
-//         height: 93%;
-//         border-radius: 50%;
-//         object-fit: cover;
-//         z-index: 2;
-//         margin: 0 auto;
-//         display: block;
-//       }
-//     }
-//     .round-image-container::before {
-//       content: "";
-//       position: absolute;
-//       bottom: 0;
-//       width: 100%;
-//       height: var(--progress, 50%); /* Dynamically controls the fill */
-//       background-color: #4caf50; /* Progress color */
-//       transition: height 0.5s ease-in-out;
-//     }
-//     .amountContainer {
-//       display: flex;
-//       justify-content: center;
-//       padding: 0;
-//       margin: 0;
-//       font-size: 32px;
-//       h4 {
-//         padding-top: 10px;
-//         margin: 0;
-//       }
-//     }
-//   }
-
-//   .sloganContainer {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     h1 {
-//       margin-bottom: 0;
-//     }
-//     img {
-//       width: 150px;
-//       height: 150px;
-//       padding: 0;
-//       margin: 0;
-//     }
-//   }
-// }
-
-// @media (max-width: 768px) {
-//   .hero h1 {
-//     font-size: 1.8rem; /* Adjust the font size for smaller screens */
-//   }
-
-//   .hero img {
-//     width: 80%; /* Adjust the image size */
-//     margin-top: 20px;
-//   }
-
-//   .hero-content {
-//     padding: 20px; /* Adjust padding for smaller devices */
-//   }
-// }
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  max-height: 600px;
+  font-family: v.$pt;
+  overflow: hidden;
+  background: linear-gradient(to top, v.$white, v.$secondary-color);
+  border-radius: 0 0 20px 20px;
+  .randomStory {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    .storyNameContainer {
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .randomStoryName {
+        margin: 10px;
+        font-size: 32px;
+        text-align: center;
+        color: v.$primary-color;
+        background-color: rgba(v.$light-gray, 0.8);
+        min-width: 90%;
+        min-height: 15%;
+      }
+    }
+    .round-image-container {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ddd;
+      img {
+        width: 90%;
+        height: 90%;
+        border-radius: 50%;
+        object-fit: cover;
+        z-index: 2;
+        margin: 0 auto;
+        display: block;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+    }
+    .round-image-container::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: var(--progress, 50%);
+      background-color: v.$primary-color;
+      transition: height 0.5s ease-in-out;
+    }
+    .amountContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      font-size: 32px;
+      h4 {
+        margin: 0;
+        color: v.$primary-color;
+      }
+    }
+  }
+}

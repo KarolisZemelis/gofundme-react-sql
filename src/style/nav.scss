@@ -1,91 +1,5 @@
 @use "var" as v;
 
-// .navContainer {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding-right: 35px;
-//   width: 100%;
-//   box-sizing: border-box;
-//   position: sticky;
-//   top: 0;
-//   background-color: rgba(v.$burnt-sienna, 0.5);
-//   z-index: 100;
-
-//   h1 {
-//     margin: 0;
-//     justify-self: center; // Center the logo horizontally
-//   }
-//   img {
-//     width: 120px;
-//     height: 120px;
-//     padding: 0;
-//     margin: 0;
-//   }
-//   .burger {
-//     display: none;
-//   }
-//   @media (max-width: 1023px) {
-//     .menu {
-//       display: none;
-//     }
-//     .nav-right {
-//       display: none;
-//     }
-
-//     .burger {
-//       display: flex;
-//       flex-direction: column;
-//       justify-content: space-between;
-//       width: 30px;
-//       height: 20px;
-//       cursor: pointer;
-//       transition: opacity 0.2s ease-in-out; // Add overall transition for hover effect
-
-//       .bar {
-//         width: 100%;
-//         height: 4px;
-//         background-color: black;
-//         transition: transform 0.3s ease-in-out,
-//           background-color 0.2s ease-in-out; // transition for hover color change
-//       }
-
-//       &:hover {
-//         opacity: 0.7; // Example hover effect: slight transparency
-//       }
-
-//       &.active {
-//         .bar {
-//           &:nth-child(1) {
-//             transform: translateY(8px) rotate(45deg);
-//           }
-//           &:nth-child(2) {
-//             opacity: 0;
-//           }
-//           &:nth-child(3) {
-//             transform: translateY(-8px) rotate(-45deg);
-//           }
-//         }
-//       }
-
-//       &.active,
-//       &:focus {
-//         // add focus style for accessibility
-//         .bar {
-//           background-color: darkgray; // change color when active or focused.
-//         }
-//       }
-
-//       &:not(.active):hover {
-//         //hover effect on bars when not active
-//         .bar {
-//           background-color: gray;
-//         }
-//       }
-//     }
-//   }
-// }
-
 //MOBILE
 .menu,
 .login_logout {
@@ -99,6 +13,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
