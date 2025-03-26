@@ -1,8 +1,9 @@
-export default function DonatorInList({ donator }) {
+export default function DonatorInList({ donation }) {
+  console.log(donation);
   return (
     <li className="donators-list__donator">
-      <div className="donators-list__donator__name">{donator.name}</div>
-      <div className="donators-amount">{donator.donation_amount} €</div>
+      <div className="donators-list__donator__name">{donation.name}</div>
+      <div className="donators-amount">{donation.donation_amount} €</div>
     </li>
   );
 }

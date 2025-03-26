@@ -4,7 +4,7 @@ import * as A from "../Constants/actions";
 import axios from "axios";
 import storiesReducer from "../Reducers/storiesReducer";
 
-export default function useDonators() {
+export default function useStories() {
   const [stories, dispatchStories] = useReducer(storiesReducer, null);
 
   useEffect((_) => {

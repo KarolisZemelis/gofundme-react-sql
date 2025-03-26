@@ -10,7 +10,7 @@ const postsPerPage = 7;
 const app = express();
 const port = 4444;
 
-const frontURL = 'http://localhost:5173';
+const frontURL = 'http://localhost:5175';
 const serverURL = `http://localhost:${port}`;
 
 app.use(cookieParser());
@@ -149,9 +149,9 @@ app.post('/logout', (req, res) => {
 
 // Start server
 //DONATORS
-app.get('/donators', (req, res) => {
+app.get('/donations', (req, res) => {
     const sql = `
-        SELECT id, name, donation_amount
+        SELECT *
         FROM donations
     `
     con.query(sql, (err, result) => {
