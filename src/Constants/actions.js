@@ -1,2 +1,3 @@
 export const LOAD_DONATIONS_FROM_SERVER = 1000;
+
 export const LOAD_STORIES_FROM_SERVER = 2000;

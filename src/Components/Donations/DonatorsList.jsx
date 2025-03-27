@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import Data from "../../Contexts/Data";
 import DonatorInList from "./DonatorInList";
+import Data from "../../Contexts/Data";
+import { useContext } from "react";
 
 export default function DonatorsList() {
   const { donations } = useContext(Data);

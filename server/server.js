@@ -148,21 +148,80 @@ app.post('/logout', (req, res) => {
 
 
 // Start server
-//DONATORS
+//DONATIONS
 app.get('/donations', (req, res) => {
     const sql = `
-        SELECT *
+        SELECT id, name, SUM(donation_amount) AS total_donated
         FROM donations
-    `
+        GROUP BY name
+        ORDER BY total_donated DESC
+       LIMIT 10
+    `;
+
     con.query(sql, (err, result) => {
         if (err) return error500(res, err)
+
         res.json({
             success: true,
             db: result
         });
     })
-
 })
+
+app.post('/newDonation', (req, res) => {
+    const newDonation = req.body;
+
+    // SQL query to insert a new donation
+    const sql1 = `
+    INSERT INTO donations (story_id, name, donation_amount, created_at)
+    VALUES (?, ?, ?, ?);
+  `;
+
+    con.query(sql1, [newDonation.story_id, newDonation.name, newDonation.donation_amount, newDonation.created_at], (err, results) => {
+        if (err) {
+            console.error('Error inserting donation:', err);
+            return res.status(500).send('Error inserting donation');
+        } else {
+            console.log('Donation inserted successfully');
+
+            // SQL query to get the story based on the story_id
+            const sql2 = `
+            SELECT * FROM stories WHERE id = ?;
+            `;
+
+            con.query(sql2, [newDonation.story_id], (err, storyResults) => {
+                if (err) {
+                    console.error('Error retrieving story:', err);
+                    return res.status(500).send('Error retrieving story');
+                } else {
+                    console.log('Story retrieved successfully');
+
+                    // SQL query to update the collected_amount in the stories table
+                    const sql3 = `
+                    UPDATE stories
+                    SET collected_amount = collected_amount + ?
+                    WHERE id = ?;
+                    `;
+
+                    con.query(sql3, [newDonation.donation_amount, newDonation.story_id], (err, updateResults) => {
+                        if (err) {
+                            console.error('Error updating story:', err);
+                            return res.status(500).send('Error updating story');
+                        } else {
+                            console.log('Story updated successfully');
+                            // Send both the success message for the donation and the retrieved story
+                            res.status(201).send({
+                                message: 'Donation inserted and story updated successfully',
+                                story: storyResults[0],  // Assuming storyResults contains only one result
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
+
 
 //STORIES
 app.get('/stories/:page', (req, res) => {
@@ -198,6 +257,8 @@ WHERE
     })
 
 })
+
+
 
 app.listen(port, () => {
     console.log(`Serveris pasiruošęs ir laukia ant ${port} porto!`);

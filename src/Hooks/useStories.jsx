@@ -5,7 +5,7 @@ import axios from "axios";
 import storiesReducer from "../Reducers/storiesReducer";
 
 export default function useStories() {
-  const [stories, dispatchStories] = useReducer(storiesReducer, null);
+  const [stories, dispatchStories] = useReducer(storiesReducer, []);
 
   useEffect((_) => {
     axios

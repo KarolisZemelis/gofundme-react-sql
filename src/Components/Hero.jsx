@@ -1,5 +1,5 @@
 import Data from "../Contexts/Data";
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect } from "react";
 import getRandomInt from "../Constants/getRandomInt";
 import capitalizeFirstLetters from "../Constants/capitalize";
 

@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import Data from "../../Contexts/Data";
+import useDonations from "../../Hooks/useDonations";
 
 export default function StoryInList({ story }) {
   const collectedPercentage = Math.round(
@@ -13,10 +12,7 @@ export default function StoryInList({ story }) {
       ? story.text.substring(0, MAX_LENGTH) + "..."
       : story.text;
 
-  const { newDonation, setNewDonation } = useContext(Data);
-  useEffect((_) => {
-    setNewDonation({ ...newDonation, story_id: story.id });
-  }, []);
+  const { submitDonation, newDonation, setNewDonation } = useDonations();
   return (
     <li className="stories-list__story">
       <div
@@ -81,7 +77,7 @@ export default function StoryInList({ story }) {
         </div>
         <button
           className="submitDonation"
-          onClick={(_) => console.log(newDonation)}
+          onClick={(_) => submitDonation(story.id)}
         >
           Support
         </button>
