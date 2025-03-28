@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import Data from "../../Contexts/Data";
 import StoryInList from "./StoryInList";
+import StoryInListAdmin from "./StoryInListAdmin";
 
 export default function StoriesList() {
   const { stories } = useContext(Data);
+  const currentPath = window.location.pathname;
+  console.log("koks mano pathas", currentPath);
   if (null === stories) {
     return (
       <div className="bin">
@@ -15,9 +18,10 @@ export default function StoriesList() {
     <div className="stories-bin">
       <h1>Stories</h1>
       <ul className="stories-list">
-        {stories.map((s) => (
-          <StoryInList key={s.id} story={s} />
-        ))}
+        {currentPath !== "/admin" &&
+          stories.map((s) => <StoryInList key={s.id} story={s} />)}
+        {currentPath === "/admin" &&
+          stories.map((s) => <StoryInListAdmin key={s.id} story={s} />)}
       </ul>
     </div>
   );

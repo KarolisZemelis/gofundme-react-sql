@@ -10,9 +10,8 @@ import logo from "../images/logobg.png";
 export default function Nav() {
   const [mobileMenu, setMobileMenu] = useState(null);
   const [clickedBars, setclickedBars] = useState(false);
-  console.log(mobileMenu);
-  const { pathname } = useLocation();
 
+  const { pathname } = useLocation();
   const { user } = useContext(Auth);
 
   if (HIDE_NAV_PATHS.includes(pathname)) {
@@ -31,6 +30,11 @@ export default function Nav() {
         <NavLink to="/about" end>
           About Us
         </NavLink>
+        {user.role === "admin" && (
+          <NavLink to="/admin" end>
+            Admin
+          </NavLink>
+        )}
       </div>
       <div className="login_logout">
         {user.role === "guest" && (

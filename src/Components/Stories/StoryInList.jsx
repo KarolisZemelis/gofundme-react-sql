@@ -11,7 +11,6 @@ export default function StoryInList({ story }) {
     story.text.length > MAX_LENGTH
       ? story.text.substring(0, MAX_LENGTH) + "..."
       : story.text;
-
   const { submitDonation, newDonation, setNewDonation } = useDonations();
   return (
     <li className="stories-list__story">
@@ -35,7 +34,7 @@ export default function StoryInList({ story }) {
         <div className="collection_bar">
           <div className="collected_bar" style={widthStyle}>
             <div className="stories-list__story__collected_amount__container">
-              <p>{story.collected_amount}€</p>
+              {story.collected_amount > 0 && <p>{story.collected_amount}€</p>}
             </div>
           </div>
         </div>

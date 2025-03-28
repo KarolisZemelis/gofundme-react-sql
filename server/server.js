@@ -10,7 +10,7 @@ const postsPerPage = 7;
 const app = express();
 const port = 4444;
 
-const frontURL = 'http://localhost:5175';
+const frontURL = 'http://localhost:5174';
 const serverURL = `http://localhost:${port}`;
 
 app.use(cookieParser());
@@ -234,18 +234,21 @@ app.get('/stories/:page', (req, res) => {
     const sql = `
         SELECT
     s.id,
+    s.status,
     s.name,
     s.text,
     s.image,
     s.request_amount,
     s.collected_amount,
+    s.finished,
     u.username
 FROM
     stories s
 JOIN
     users u ON s.user_id = u.id
-WHERE
-    s.status = 1
+-- WHERE s.status = 1
+    WHERE
+    s.finished = 0
     LIMIT ? OFFSET ?
     `
     con.query(sql, [postsPerPage, offset], (err, result) => {

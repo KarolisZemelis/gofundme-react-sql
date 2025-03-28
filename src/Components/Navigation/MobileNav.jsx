@@ -27,6 +27,11 @@ export default function MobileNav({ setMobileMenu, setclickedBars }) {
         <NavLink to="/about" end onClick={() => handleClick()}>
           About Us
         </NavLink>
+        {user.role === "admin" && (
+          <NavLink to="/admin" end onClick={() => handleClick()}>
+            Admin
+          </NavLink>
+        )}
         {user.role === "guest" && (
           <NavLink to="/login" end onClick={() => handleClick()}>
             Login

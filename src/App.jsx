@@ -8,6 +8,7 @@ import About from "./Pages/About";
 import Page404 from "./Pages/Page404";
 import Login from "./Pages/Login";
 import Logout from "./Pages/Logout";
+import Admin from "./Pages/Admin";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="aboutUs" element={<About />} />
+            <Route path="admin" element={<Admin />} />
             <Route path="login" element={<Login />} />
             <Route path="logout" element={<Logout />} />
             <Route path="*" element={<Page404 />} />
