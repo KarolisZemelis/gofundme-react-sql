@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import * as C from "../Constants/main";
 import * as A from "../Constants/actions";
 import axios from "axios";
-import donationsReducer from "../Reducers/donationsReducer";
 import Data from "../Contexts/Data";
 
 export default function useDonations() {

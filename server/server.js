@@ -195,27 +195,50 @@ app.post('/newDonation', (req, res) => {
                     return res.status(500).send('Error retrieving story');
                 } else {
                     console.log('Story retrieved successfully');
-
+                    const remainingAmount = storyResults.request_amount - (storyResults.collected_amount + newDonation.donation_amount)
                     // SQL query to update the collected_amount in the stories table
-                    const sql3 = `
-                    UPDATE stories
-                    SET collected_amount = collected_amount + ?
-                    WHERE id = ?;
-                    `;
+                    if (remainingAmount > 0) {
+                        const sql3 = `
+                        UPDATE stories
+                        SET collected_amount = collected_amount + ?
+                        WHERE id = ?;
+                        `;
 
-                    con.query(sql3, [newDonation.donation_amount, newDonation.story_id], (err, updateResults) => {
-                        if (err) {
-                            console.error('Error updating story:', err);
-                            return res.status(500).send('Error updating story');
-                        } else {
-                            console.log('Story updated successfully');
-                            // Send both the success message for the donation and the retrieved story
-                            res.status(201).send({
-                                message: 'Donation inserted and story updated successfully',
-                                story: storyResults[0],  // Assuming storyResults contains only one result
-                            });
-                        }
-                    });
+                        con.query(sql3, [newDonation.donation_amount, newDonation.story_id], (err, updateResults) => {
+                            if (err) {
+                                console.error('Error updating story:', err);
+                                return res.status(500).send('Error updating story');
+                            } else {
+                                console.log('Story updated successfully');
+                                // Send both the success message for the donation and the retrieved story
+                                res.status(201).send({
+                                    message: 'Donation inserted and story updated successfully',
+                                    story: storyResults[0],  // Assuming storyResults contains only one result
+                                });
+                            }
+                        });
+                    } else {
+                        const sql3 = `
+                        UPDATE stories
+                        SET collected_amount = collected_amount + ?,finished = 1
+                        WHERE id = ?;
+                        `;
+
+                        con.query(sql3, [newDonation.donation_amount, newDonation.story_id], (err, updateResults) => {
+                            if (err) {
+                                console.error('Error updating story:', err);
+                                return res.status(500).send('Error updating story');
+                            } else {
+                                console.log('Story updated successfully');
+                                // Send both the success message for the donation and the retrieved story
+                                res.status(201).send({
+                                    message: 'Donation inserted and story updated successfully',
+                                    story: storyResults[0],  // Assuming storyResults contains only one result
+                                });
+                            }
+                        });
+                    }
+
                 }
             });
         }
@@ -224,14 +247,14 @@ app.post('/newDonation', (req, res) => {
 
 //STORIES
 app.get('/stories/:page', (req, res) => {
-
+    const postsPerPage = 7
     const page = parseInt(req.params.page);
     if (!Number.isInteger(page) || page < 1) {
         return res.status(400).json({ success: false, error: 'Invalid page number' });
     }
     const offset = (page - 1) * postsPerPage;
     const sql = `
-        SELECT
+   SELECT
     s.id,
     s.status,
     s.name,
@@ -239,16 +262,18 @@ app.get('/stories/:page', (req, res) => {
     s.image,
     s.request_amount,
     s.collected_amount,
+    (s.request_amount - s.collected_amount) AS remaining_amount,
     s.finished,
     u.username
 FROM
     stories s
 JOIN
     users u ON s.user_id = u.id
--- WHERE s.status = 1
-    WHERE
+WHERE
     s.finished = 0
-    LIMIT ? OFFSET ?
+ORDER BY
+    remaining_amount DESC
+
     `
     con.query(sql, [postsPerPage, offset], (err, result) => {
         if (err) return error500(res, err)
