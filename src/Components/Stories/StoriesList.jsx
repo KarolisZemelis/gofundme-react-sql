@@ -6,7 +6,7 @@ import StoryInListAdmin from "./StoryInListAdmin";
 export default function StoriesList() {
   const { stories } = useContext(Data);
   const currentPath = window.location.pathname;
-  console.log("koks mano pathas", currentPath);
+
   if (null === stories) {
     return (
       <div className="bin">

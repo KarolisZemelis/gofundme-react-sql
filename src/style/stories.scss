@@ -25,7 +25,7 @@
           background-color: rgba(v.$secondary-color, 0.9);
           width: 95%;
           text-align: center;
-          color: v.$attention-color;
+          color: v.$light-gray;
           border-radius: 10px;
           display: flex;
           flex-direction: column;
@@ -55,14 +55,14 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          color: v.$attention-color;
+          color: v.$light-gray;
         }
       }
       .stories-list__story__text {
         font-family: v.$ibm;
         .read-more {
           display: inline-block;
-          background-color: #007bff;
+          background-color: v.$secondary-color;
           color: white;
           padding: 10px 20px;
           text-decoration: none;

@@ -1,10 +1,18 @@
+import { useEffect, useState } from "react";
+import useStories from "../../Hooks/useStories";
+
 export default function StoryInListAdmin({ story }) {
   const collectedPercentage = Math.round(
     (story.collected_amount * 100) / story.request_amount
   );
   const remainingAmount = Number(story.request_amount - story.collected_amount);
   const widthStyle = { width: `${collectedPercentage}%` };
+  const [checked, setChecked] = useState(story.status === 1);
+  const { handleStatusChange } = useStories();
 
+  useEffect(() => {
+    setChecked(story.status === 1);
+  }, [story.status]);
   return (
     <li className="stories-list__story">
       <div
@@ -38,11 +46,30 @@ export default function StoryInListAdmin({ story }) {
       <div className="stories-list__story__status">
         <p>Story status:</p>
 
-        <input type="radio" id="storyStatusEnabled" name="storyStatus" />
-        <label htmlFor="storyStatus">Enabled</label>
+        <input
+          type="radio"
+          id="storyStatusEnabled"
+          name={`storyStatus-${story.id}`}
+          checked={checked === true}
+          onChange={() => setChecked(true)}
+        />
+        <label htmlFor="storyStatusEnabled">Enabled</label>
 
-        <input type="radio" id="storyStatusDisabled" name="storyStatus" />
-        <label htmlFor="storyStatus">Disabled</label>
+        <input
+          type="radio"
+          id="storyStatusDisabled"
+          name={`storyStatus-${story.id}`}
+          checked={checked === false}
+          onChange={() => setChecked(false)}
+        />
+        <label htmlFor="storyStatusDisabled">Disabled</label>
+
+        <button
+          type="button"
+          onClick={(_) => handleStatusChange(story.id, checked)}
+        >
+          Save
+        </button>
       </div>
     </li>
   );

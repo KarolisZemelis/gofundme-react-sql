@@ -10,7 +10,7 @@ const postsPerPage = 7;
 const app = express();
 const port = 4444;
 
-const frontURL = 'http://localhost:5174';
+const frontURL = 'http://localhost:5175';
 const serverURL = `http://localhost:${port}`;
 
 app.use(cookieParser());
@@ -222,7 +222,6 @@ app.post('/newDonation', (req, res) => {
     });
 });
 
-
 //STORIES
 app.get('/stories/:page', (req, res) => {
 
@@ -259,6 +258,23 @@ JOIN
         });
     })
 
+})
+
+app.post('/updateStoryStatus/:id', (req, res) => {
+    const postID = req.params.id;
+    const status = req.body.status === true ? 1 : 0
+    const sql1 = `
+    UPDATE stories
+    SET status = ?
+    WHERE id = ?
+    `;
+    con.query(sql1, [status, postID], (err) => {
+        if (err) return error500(res, err);
+        res.status(200).json({
+            msg: { type: 'success', text: `Story status has been updated` },
+        });
+        return;
+    });
 })
 
 

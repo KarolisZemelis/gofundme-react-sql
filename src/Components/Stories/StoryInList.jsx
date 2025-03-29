@@ -1,6 +1,9 @@
 import useDonations from "../../Hooks/useDonations";
 
 export default function StoryInList({ story }) {
+  if (story.status === 0) {
+    return;
+  }
   const collectedPercentage = Math.round(
     (story.collected_amount * 100) / story.request_amount
   );
