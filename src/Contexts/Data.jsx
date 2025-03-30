@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, useEffect, useState } from "react";
 import useStories from "../Hooks/useStories";
 import axios from "axios";
 import * as C from "../Constants/main";
@@ -9,8 +9,8 @@ const Data = createContext();
 
 export const DataProvider = ({ children }) => {
   const [donations, dispatchDonations] = useReducer(donatorsReducer, []);
-
   const { stories, dispatchStories } = useStories();
+  const [modalStoryId, setModalStoryId] = useState(false);
 
   useEffect(
     (_) => {
@@ -35,6 +35,8 @@ export const DataProvider = ({ children }) => {
         dispatchDonations,
         stories,
         dispatchStories,
+        modalStoryId,
+        setModalStoryId,
       }}
     >
       {children}

@@ -10,7 +10,7 @@ const postsPerPage = 7;
 const app = express();
 const port = 4444;
 
-const frontURL = 'http://localhost:5175';
+const frontURL = 'http://localhost:5173';
 const serverURL = `http://localhost:${port}`;
 
 app.use(cookieParser());

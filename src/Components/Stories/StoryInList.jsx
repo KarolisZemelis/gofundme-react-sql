@@ -1,12 +1,13 @@
+import { useContext } from "react";
 import useDonations from "../../Hooks/useDonations";
+import Data from "../../Contexts/Data";
 
 export default function StoryInList({ story }) {
   const { submitDonation, newDonation, setNewDonation } = useDonations();
-  console.log(story);
+  const { setModalStoryId } = useContext(Data);
   if (story.status === 0) {
     return;
   }
-  // const remainingAmount = Number(story.request_amount - story.collected_amount);
   const widthStyle = {
     width: `${Math.round(
       (story.collected_amount * 100) / story.request_amount
@@ -17,7 +18,9 @@ export default function StoryInList({ story }) {
     story.text.length > MAX_LENGTH
       ? story.text.substring(0, MAX_LENGTH) + "..."
       : story.text;
-
+  const openModal = () => {
+    setModalStoryId(story.id); // Set the story ID when opening the modal
+  };
   return (
     <li className="stories-list__story">
       <div
@@ -94,9 +97,12 @@ export default function StoryInList({ story }) {
         <p>
           {truncatedText}{" "}
           {story.text.length > MAX_LENGTH && (
-            <a href={`/story/${story.id}`} className="read-more">
+            // <a href={`/story/${story.id}`} className="read-more">
+            //   Read more
+            // </a>
+            <button type="button" className="read-more" onClick={openModal}>
               Read more
-            </a>
+            </button>
           )}
         </p>
       </div>
