@@ -149,13 +149,31 @@ app.post('/logout', (req, res) => {
 
 // Start server
 //DONATIONS
-app.get('/donations', (req, res) => {
+app.get('/donators', (req, res) => {
     const sql = `
-        SELECT id, name, SUM(donation_amount) AS total_donated
+        SELECT name, SUM(donation_amount) AS total_donated
         FROM donations
         GROUP BY name
         ORDER BY total_donated DESC
        LIMIT 10
+    `;
+
+    con.query(sql, (err, result) => {
+        if (err) return error500(res, err)
+
+        res.json({
+            success: true,
+            db: result
+        });
+    })
+})
+
+app.get('/donations', (req, res) => {
+    console.log('test')
+    const sql = `
+        SELECT *
+        FROM donations
+        ORDER BY donation_amount DESC
     `;
 
     con.query(sql, (err, result) => {

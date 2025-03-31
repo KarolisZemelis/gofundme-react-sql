@@ -1,0 +1,166 @@
+@use "var" as v;
+.story-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  &__exitModal {
+    position: absolute; /* Position it absolutely within the modal */
+    top: 10px; /* Adjust top spacing */
+    right: 10px; /* Adjust right spacing */
+    width: 30px; /* Set width */
+    height: 30px; /* Set height */
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    color: white; /* White text */
+    border-radius: 50%; /* Make it a circle */
+    cursor: pointer; /* Change cursor to pointer */
+    font-size: 18px; /* Adjust font size */
+    font-weight: bold; /* Make the "X" bold */
+    transition: background-color 0.3s ease; /* Add a smooth transition */
+  }
+  &__exitModal:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Darker background on hover */
+  }
+  &__dialog-centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    max-width: 600px;
+    min-height: 400px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-y: auto;
+    &__story {
+      &__image {
+        flex-shrink: 0;
+        width: 100%;
+        height: 300px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url("https://picsum.photos/300/300");
+      }
+      &__money {
+        &__container {
+          display: flex;
+          gap: 15px;
+          margin-top: 1rem;
+        }
+        &__requested_amount,
+        &__remaining_amount {
+          text-align: center;
+          border: 1px solid v.$dark-gray;
+          border-radius: 15px;
+          padding: 5px;
+        }
+        &__collection_bar {
+          width: 100%;
+          height: 3rem;
+          border-radius: 5px;
+          border: 1px solid v.$dark-gray;
+          display: flex;
+          align-items: center;
+          margin: 1rem 0 0 0;
+          &__collected_bar {
+            background-color: rgba(v.$secondary-color, 0.9);
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: v.$light-gray;
+          }
+        }
+        &__donate {
+          width: 100%;
+          &__container {
+            display: flex;
+            border: 1px solid v.$dark-gray;
+            border-radius: 10px;
+            padding: 15px;
+            column-gap: 5px;
+            &__input_name,
+            &__input_donationAmount {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+
+              input {
+                border: 1px solid v.$dark-gray;
+                width: 100%;
+                height: 1.5rem;
+              }
+            }
+          }
+        }
+      }
+      &__donations {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        &__container {
+          display: flex;
+          justify-content: space-between;
+          width: 80%;
+          border-bottom: 1px solid v.$dark-gray;
+        }
+      }
+    }
+  }
+}
+
+// &__dialog-centered {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   .story-modal {
+//     &__story__image {
+//       width: 300px;
+//       height: 300px;
+//       background-color: black;
+//       background-repeat: no-repeat;
+//       background-position: center;
+//     }
+//     &__story__money {
+//       &__container {
+//         display: flex;
+//         gap: 15px;
+//         margin-top: 1rem;
+//       }
+//       &__requested_amount,
+//       &__remaining_amount {
+//         text-align: center;
+//         border: 1px solid v.$dark-gray;
+//         border-radius: 15px;
+//         padding: 5px;
+//       }
+//       &__collection_bar {
+//         width: 100%;
+//         height: 3rem;
+//         border-radius: 5px;
+//         border: 1px solid v.$dark-gray;
+//         display: flex;
+//         align-items: center;
+//         margin: 1rem 0 1rem 0;
+//         &__collected_bar {
+//           background-color: rgba(v.$secondary-color, 0.9);
+//           height: 100%;
+//           display: flex;
+//           align-items: center;
+//           justify-content: center;
+//           color: v.$light-gray;
+//         }
+//       }
+//     }
+//   }
+// }
