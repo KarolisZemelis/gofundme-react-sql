@@ -7,15 +7,15 @@ export default function DonatorsList() {
 
   if (null === donators) {
     return (
-      <div className="bin bin-30">
+      <div className="donators__container">
         <h1>Donators loading...</h1>
       </div>
     );
   }
   return (
-    <div className="bin bin-30">
-      <h1>Top donators</h1>
-      <ul className="donators-list">
+    <div className="donators__container">
+      <h1>Top 10 Donators</h1>
+      <ul className="donators__container__list">
         {donators.map((d, index) => (
           <DonatorInList key={index} donator={d} />
         ))}

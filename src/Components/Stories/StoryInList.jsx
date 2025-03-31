@@ -29,75 +29,81 @@ export default function StoryInList({ story }) {
       >
         <div className="stories-list__story__name__container">
           <h3>{story.name}</h3>
-          <div className="stories-list__story__name__requested_amount">
+          <div className="stories-list__story__name__container__requested_amount">
             <p>Requested Amount: </p>
             <p> {story.request_amount}€</p>
           </div>
-          <div className="stories-list__story__name__requested_amount">
+          <div className="stories-list__story__name__container__remaining_amount">
             <p>Remaining Amount: </p>
             <p> {story.remaining_amount}€</p>
           </div>
         </div>
       </div>
       <div className="stories-list__story__collected_amount">
-        <div className="collection_bar">
-          <div className="collected_bar" style={widthStyle}>
-            <div className="stories-list__story__collected_amount__container">
+        <div className="stories-list__story__collected_amount__collection_bar">
+          <div
+            className="stories-list__story__collected_amount__collection_bar__collected_bar"
+            style={widthStyle}
+          >
+            <div className="stories-list__story__collected_amount__collection_bar__collected_bar__text">
               {story.collected_amount > 0 && <p>{story.collected_amount}€</p>}
             </div>
           </div>
         </div>
       </div>
       {story.remaining_amount > 0 && (
-        <div className="donate">
-          <div className="input_name">
-            <label htmlFor="donateName">Name</label>
-            <input
-              type="text"
-              id="donateName"
-              maxLength="100"
-              value={
-                newDonation ? (newDonation.name ? newDonation.name : "") : ""
-              }
-              onChange={(e) =>
-                setNewDonation({ ...newDonation, name: e.target.value })
-              }
-            />
-          </div>
-          <div className="input_donation_amount">
-            <label htmlFor="donation_amount">Amount</label>
-            <input
-              type="number"
-              id="donation_amount"
-              min={1}
-              max={story.remaining_amount}
-              value={newDonation?.donation_amount || ""}
-              onChange={(e) => {
-                const inputValue = parseInt(e.target.value);
-                const validatedValue =
-                  inputValue <= story.remaining_amount ? inputValue : "";
+        <div className="stories-list__story__donate">
+          <div className="stories-list__story__donate__container">
+            <div className="stories-list__story__donate__container__input_name">
+              <label htmlFor="donateName">Name</label>
+              <input
+                type="text"
+                id="donateName"
+                maxLength="100"
+                value={
+                  newDonation ? (newDonation.name ? newDonation.name : "") : ""
+                }
+                onChange={(e) =>
+                  setNewDonation({ ...newDonation, name: e.target.value })
+                }
+              />
+            </div>
+            <div className="stories-list__story__donate__container__input_donationAmount">
+              <label htmlFor="donation_amount">Amount</label>
+              <input
+                type="number"
+                id="donation_amount"
+                min={1}
+                max={story.remaining_amount}
+                value={newDonation?.donation_amount || ""}
+                onChange={(e) => {
+                  const inputValue = parseInt(e.target.value);
+                  const validatedValue =
+                    inputValue <= story.remaining_amount ? inputValue : "";
 
-                setNewDonation({
-                  ...newDonation,
-                  donation_amount: validatedValue,
-                });
-              }}
-            />
+                  setNewDonation({
+                    ...newDonation,
+                    donation_amount: validatedValue,
+                  });
+                }}
+              />
+            </div>
           </div>
-          <button
-            className="submitDonation"
-            onClick={(_) => submitDonation(story.id)}
-          >
+          <button className="button" onClick={(_) => submitDonation(story.id)}>
             Support
           </button>
         </div>
       )}
-
       <div className="stories-list__story__text">
         <p>
           {truncatedText}{" "}
           {story.text.length > MAX_LENGTH && (
-            <button type="button" className="read-more" onClick={openModal}>
+            <button
+              type="button"
+              className="button"
+              style={{ backgroundColor: "#333333" }}
+              onClick={openModal}
+            >
               Read more
             </button>
           )}

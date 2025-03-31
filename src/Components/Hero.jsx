@@ -4,7 +4,7 @@ import getRandomInt from "../Constants/getRandomInt";
 import capitalizeFirstLetters from "../Constants/capitalize";
 
 export default function Hero() {
-  const { stories } = useContext(Data);
+  const { stories, setModalStoryId } = useContext(Data);
   const [heroStory, setHeroStory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -54,9 +54,13 @@ export default function Hero() {
       </div>
     );
   }
+
+  const openModal = () => {
+    setModalStoryId(heroStory.id);
+  };
   return (
     <div className="hero">
-      <div className="randomStory">
+      <div className="randomStory" onClick={openModal}>
         {
           <div className="storyNameContainer">
             <h3 className="randomStoryName">

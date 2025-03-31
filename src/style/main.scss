@@ -5,6 +5,7 @@
 @use "hero";
 @use "navMobile";
 @use "story";
+@use "donators";
 
 * {
   box-sizing: border-box;
@@ -30,9 +31,9 @@ body {
 }
 
 .heroBodyBreak {
-  background-color: v.$secondary-color;
+  background-color: v.$dark-gray;
   padding: 1rem;
-  color: v.$attention-color;
+  color: v.$light-gray;
   text-align: center;
 }
 

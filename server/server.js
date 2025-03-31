@@ -88,7 +88,6 @@ app.post('/login', (req, res) => {
             });
             return;
         }
-        console.log(result)
         const token = md5(v4());
         const userId = result[0].id;
         let time = new Date();
@@ -169,7 +168,6 @@ app.get('/donators', (req, res) => {
 })
 
 app.get('/donations', (req, res) => {
-    console.log('test')
     const sql = `
         SELECT *
         FROM donations
