@@ -29,7 +29,7 @@ export const DataProvider = ({ children }) => {
     },
     [donators, donations]
   );
-  console.log(donations, "this is donations in DATA");
+
   return (
     <Data.Provider
       value={{

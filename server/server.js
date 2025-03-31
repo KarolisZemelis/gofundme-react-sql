@@ -287,8 +287,6 @@ FROM
     stories s
 JOIN
     users u ON s.user_id = u.id
-WHERE
-    s.finished = 0
 ORDER BY
     remaining_amount DESC
 

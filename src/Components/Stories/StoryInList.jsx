@@ -19,7 +19,7 @@ export default function StoryInList({ story }) {
       ? story.text.substring(0, MAX_LENGTH) + "..."
       : story.text;
   const openModal = () => {
-    setModalStoryId(story.id); // Set the story ID when opening the modal
+    setModalStoryId(story.id);
   };
   return (
     <li className="stories-list__story">
@@ -97,9 +97,6 @@ export default function StoryInList({ story }) {
         <p>
           {truncatedText}{" "}
           {story.text.length > MAX_LENGTH && (
-            // <a href={`/story/${story.id}`} className="read-more">
-            //   Read more
-            // </a>
             <button type="button" className="read-more" onClick={openModal}>
               Read more
             </button>

@@ -47,14 +47,14 @@ export default function useDonations() {
       });
 
       const res = await axios.get(C.SERVER_URL + "donators");
-
       dispatchDonators({
         type: A.LOAD_DONATORS_FROM_SERVER,
         payload: [...res.data.db],
       });
+      const res1 = await axios.get(C.SERVER_URL + "donations");
       dispatchDonations({
         type: A.LOAD_DONATIONS_FROM_SERVER,
-        payload: res.data.db,
+        payload: res1.data.db,
       });
 
       setNewDonation({});

@@ -1,26 +1,31 @@
 import { useContext, useEffect, useState } from "react";
 import useDonations from "../../Hooks/useDonations";
-import useStories from "../../Hooks/useStories";
 import Data from "../../Contexts/Data";
 
 export default function StoryModal({ modalStoryId }) {
   const { submitDonation, newDonation, setNewDonation } = useDonations();
-  const { stories } = useStories();
+  const { setModalStoryId, donations, stories } = useContext(Data);
   const [story, setStory] = useState(null);
-  const { setModalStoryId, donations } = useContext(Data);
+  const [storyDonations, setStoryDonations] = useState([]);
 
   useEffect(() => {
     if (stories && modalStoryId) {
-      const foundStory = stories.find((s) => s.id === modalStoryId);
-      setStory(foundStory);
+      setStory(stories.find((s) => s.id === modalStoryId));
     }
-  }, [stories, modalStoryId]);
+  }, [stories, modalStoryId, donations]);
+  useEffect(() => {
+    if (story && donations) {
+      const filteredDonations = donations.filter(
+        (s) => s.story_id === story.id
+      );
+      setStoryDonations(filteredDonations);
+    }
+  }, [donations, story]);
 
   if (!story) {
     return <div>Loading...</div>;
   }
-  const storyDonations = donations.filter((s) => s.story_id === story.id);
-  console.log("donations", donations);
+
   return (
     <div className="story-modal">
       <div className="story-modal__dialog-centered">
