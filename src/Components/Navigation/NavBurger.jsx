@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export default function BurgerMenu({
   mobileMenu,
   setMobileMenu,
@@ -7,7 +5,6 @@ export default function BurgerMenu({
   setclickedBars,
 }) {
   const handleClick = () => {
-    // const newActive = !clickedBars;
     setclickedBars(!clickedBars);
     setMobileMenu(mobileMenu === null ? "active" : null);
   };

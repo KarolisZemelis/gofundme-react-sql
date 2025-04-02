@@ -6,6 +6,11 @@ export const HIDE_NAV_PATHS = [
     '/logout'
 ];
 
+export const HIDE_FOOTER_PATHS = [
+    '/login',
+    '/logout'
+];
+
 export const GO_AFTER_LOGIN = '/';
 
 export const GO_AFTER_LOGOUT = '/';

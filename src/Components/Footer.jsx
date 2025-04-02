@@ -1,9 +1,14 @@
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import { useContext } from "react";
 import Auth from "../Contexts/Auth";
+import { HIDE_FOOTER_PATHS } from "../Constants/main";
 import logo from "../Components/images/logobg.png";
 export default function Footer() {
   const { user } = useContext(Auth);
+  const { pathname } = useLocation();
+  if (HIDE_FOOTER_PATHS.includes(pathname)) {
+    return null;
+  }
   return (
     <div className="footer">
       <div className="footer__logo-link">

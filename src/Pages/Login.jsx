@@ -8,7 +8,6 @@ const defForm = { username: "", password: "" };
 export default function Login() {
   const [form, setForm] = useState(defForm);
   const { setUser } = useContext(Auth);
-
   const { setLoginForm } = useAuth(setUser);
 
   const handleChange = (e) => {

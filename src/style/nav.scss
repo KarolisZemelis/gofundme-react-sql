@@ -1,7 +1,7 @@
 @use "var" as v;
 
 //MOBILE
-.menu,
+.navContainer__menu,
 .login_logout {
   display: none;
 }
@@ -52,6 +52,48 @@
     .bar:nth-child(3) {
       transform: translateY(-14px) rotate(-45deg);
       background-color: v.$white;
+    }
+  }
+}
+
+@media (min-width: v.$m) {
+  .burger {
+    display: none;
+  }
+  .navContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &__logo {
+      display: flex;
+      align-items: center;
+    }
+    &__menu {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      a {
+        text-decoration: none;
+        color: v.$dark-gray;
+        font-family: v.$ibm;
+        font-size: 1.5rem;
+      }
+      a:hover {
+        color: v.$primary-color;
+        text-decoration: underline;
+      }
+    }
+    &__login_logout {
+      a {
+        text-decoration: none;
+        color: v.$dark-gray;
+        font-family: v.$ibm;
+        font-size: 1.5rem;
+      }
+      a:hover {
+        color: v.$primary-color;
+        text-decoration: underline;
+      }
     }
   }
 }

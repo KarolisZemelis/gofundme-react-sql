@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect((_) => {
     getUser();
-    console.log("user", user);
   }, []);
 
   return (

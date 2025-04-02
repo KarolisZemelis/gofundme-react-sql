@@ -5,7 +5,6 @@ import NavBurger from "./NavBurger";
 import MobileNav from "./MobileNav";
 import Auth from "../../Contexts/Auth";
 import logo from "../images/logobg.png";
-// import "../../style/nav.scss";
 
 export default function Nav() {
   const [mobileMenu, setMobileMenu] = useState(null);
@@ -19,10 +18,10 @@ export default function Nav() {
   }
   return (
     <nav className="navContainer">
-      <NavLink to="/" end className="logo-link">
+      <NavLink to="/" end className="navContainer__logo">
         <img src={logo} className="logo" alt="Home" />
       </NavLink>
-      <div className="menu">
+      <div className="navContainer__menu">
         <NavLink to="/" end>
           Home
         </NavLink>
@@ -38,7 +37,7 @@ export default function Nav() {
           </NavLink>
         )}
       </div>
-      <div className="login_logout">
+      <div className="navContainer__login_logout">
         {user.role === "guest" && (
           <NavLink to="/login" end>
             Login
@@ -46,7 +45,7 @@ export default function Nav() {
         )}
         {user.role !== "guest" && (
           <div className="logout">
-            <div className="nav-right__username">{user.username}</div>
+            <div className="nav-right__username">{user.username},</div>
             <NavLink to="/logout" end>
               Logout
             </NavLink>
