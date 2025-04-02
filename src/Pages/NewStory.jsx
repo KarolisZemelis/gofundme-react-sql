@@ -8,7 +8,6 @@ export default function NewStory() {
   const [name, setName] = useState("");
   const [text, setText] = useState("");
   const [requestAmount, setRequestAmount] = useState(0);
-  console.log("newstory image", image);
   const handleSubmit = (_) => {
     setStoreStory({
       name,

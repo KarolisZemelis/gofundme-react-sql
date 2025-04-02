@@ -327,6 +327,13 @@ ORDER BY
     `
     con.query(sql, [postsPerPage, offset], (err, result) => {
         if (err) return error500(res, err)
+        console.log(result)
+        result = result.map(r => (
+            {
+                ...r,
+                image: r.image.indexOf('http') === 0 ? r.image : frontURL + '/upload/' + r.image
+            }
+        ));
         res.json({
             success: true,
             db: result
@@ -342,8 +349,7 @@ app.post('/stories/new', (req, res) => {
     const request_amount = Number(req.body.requestAmount);
     const created_at = new Date();
     const user_id = req.user.id;
-    console.log(user_id)
-    console.log(typeof user_id)
+
 
     const sql1 = `
         INSERT INTO stories
@@ -352,7 +358,10 @@ app.post('/stories/new', (req, res) => {
     `;
     con.query(sql1, [name, text, image, request_amount, user_id, created_at], (err, result) => {
         if (err) return error500(res, err);
+        res.json({
+            success: true,
 
+        });
     });
 });
 
