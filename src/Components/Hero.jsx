@@ -1,4 +1,5 @@
 import Data from "../Contexts/Data";
+import { NavLink } from "react-router";
 import { useState, useContext, useEffect } from "react";
 import getRandomInt from "../Constants/getRandomInt";
 import capitalizeFirstLetters from "../Constants/capitalize";
@@ -29,16 +30,16 @@ export default function Hero() {
       selectRandomStory();
       setIsLoading(false);
     } else {
-      setIsLoading(false);
+      setIsLoading(true);
     }
   }, [stories]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       selectRandomStory();
-    }, 7000); // Change story every 10 seconds (adjust as needed)
+    }, 7000);
 
-    return () => clearInterval(intervalId); // Cleanup interval on unmount
+    return () => clearInterval(intervalId);
   }, [stories]);
 
   if (isLoading) {
@@ -60,31 +61,26 @@ export default function Hero() {
   };
   return (
     <div className="hero">
-      <div className="randomStory" onClick={openModal}>
-        {
-          <div className="storyNameContainer">
-            <h3 className="randomStoryName">
-              {capitalizeFirstLetters(heroStory.name)}
-            </h3>
-          </div>
-        }
-        {
-          <div
-            className="round-image-container"
-            style={{ "--progress": `${heroStory.progressPercentage}%` }}
-          >
-            {<img src={heroStory.image} alt={heroStory.name} />}
-          </div>
-        }
-        {
-          <div className="amountContainer">
-            <h4>
-              {heroStory.collected_amount} € <b>/</b>
-            </h4>
+      <div className="hero__randomStoryContainer" onClick={openModal}>
+        <div className="hero__randomStoryContainer__name">
+          <h3>{capitalizeFirstLetters(heroStory.name)}</h3>
+        </div>
+        <div
+          className="hero__randomStoryContainer__image"
+          style={{ "--progress": `${heroStory.progressPercentage}%` }}
+        >
+          <img src={heroStory.image} alt={heroStory.name} />
+        </div>
 
-            <h4>{heroStory.request_amount} €</h4>
-          </div>
-        }
+        <div className="hero__randomStoryContainer__amount">
+          <h4>
+            {heroStory.collected_amount} € <b>/</b> {heroStory.request_amount} €
+          </h4>
+        </div>
+
+        <NavLink to="newStory" end className="button">
+          <div>Create Your Story</div>
+        </NavLink>
       </div>
     </div>
   );

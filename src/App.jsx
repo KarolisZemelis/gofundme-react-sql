@@ -10,6 +10,7 @@ import Login from "./Pages/Login";
 import Logout from "./Pages/Logout";
 import Admin from "./Pages/Admin";
 import NewStory from "./Pages/NewStory";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="logout" element={<Logout />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
+          <Footer />
         </Body>
       </DataProvider>
     </AuthProvider>

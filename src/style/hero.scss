@@ -4,20 +4,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50vh;
-  max-height: 600px;
+  width: 100%;
   font-family: v.$pt;
-  overflow: hidden;
   background: linear-gradient(to top, v.$white, v.$secondary-color);
   border-radius: 0 0 20px 20px;
-  .randomStory {
+  &__randomStoryContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
     height: 100%;
-    .storyNameContainer {
+    &__name {
       width: 100%;
       height: 5rem;
       display: flex;
@@ -26,14 +24,15 @@
       margin: 10px;
       border: 1px solid v.$attention-color;
       background-color: rgba(v.$light-gray, 0.8);
-      .randomStoryName {
+      h3 {
         margin: 10px;
         font-size: 32px;
-        color: v.$primary-color;
+        color: v.$dark-gray;
         text-align: center;
       }
     }
-    .round-image-container {
+    &__image {
+      margin-top: 1rem;
       position: relative;
       width: 250px;
       height: 250px;
@@ -54,7 +53,7 @@
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
       }
     }
-    .round-image-container::before {
+    &__image::before {
       content: "";
       position: absolute;
       bottom: 0;
@@ -63,16 +62,30 @@
       background-color: v.$primary-color;
       transition: height 0.5s ease-in-out;
     }
-    .amountContainer {
+    &__amount {
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 0;
       margin: 0;
       font-size: 32px;
+      margin-top: 1rem;
       h4 {
         margin: 0;
-        color: v.$primary-color;
+        color: v.$dark-gray;
+      }
+    }
+    a {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      margin-bottom: 1rem;
+      div {
+        color: v.$light-gray;
+        font-family: v.$ibm;
+        font-size: 1.5rem;
       }
     }
   }

@@ -7,6 +7,7 @@
 @use "story";
 @use "donators";
 @use "newStory";
+@use "footer";
 
 * {
   box-sizing: border-box;
@@ -26,6 +27,8 @@ body {
   margin-top: 1rem;
   background-color: rgba(v.$secondary-color, 0.9);
   color: v.$light-gray;
+  font-family: v.$ibm;
+  font-size: 1rem;
   border: 1px solid v.$dark-gray;
   border-radius: 5px;
   flex-shrink: 0;

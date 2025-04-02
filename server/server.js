@@ -11,7 +11,7 @@ const postsPerPage = 7;
 const app = express();
 const port = 4444;
 
-const frontURL = 'http://localhost:5173';
+const frontURL = 'http://localhost:5175';
 const serverURL = `http://localhost:${port}`;
 
 app.use(express.json({ limit: '50mb' }));
@@ -327,7 +327,6 @@ ORDER BY
     `
     con.query(sql, [postsPerPage, offset], (err, result) => {
         if (err) return error500(res, err)
-        console.log(result)
         result = result.map(r => (
             {
                 ...r,
@@ -349,7 +348,6 @@ app.post('/stories/new', (req, res) => {
     const request_amount = Number(req.body.requestAmount);
     const created_at = new Date();
     const user_id = req.user.id;
-
 
     const sql1 = `
         INSERT INTO stories

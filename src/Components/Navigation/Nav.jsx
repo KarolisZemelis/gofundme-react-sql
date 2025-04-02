@@ -5,7 +5,7 @@ import NavBurger from "./NavBurger";
 import MobileNav from "./MobileNav";
 import Auth from "../../Contexts/Auth";
 import logo from "../images/logobg.png";
-import "../../style/nav.scss";
+// import "../../style/nav.scss";
 
 export default function Nav() {
   const [mobileMenu, setMobileMenu] = useState(null);
