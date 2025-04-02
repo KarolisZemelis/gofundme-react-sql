@@ -4,6 +4,7 @@ import cors from 'cors';
 import md5 from 'md5';
 import cookieParser from 'cookie-parser';
 import { v4 } from 'uuid';
+import fs from 'node:fs';
 
 const postsPerPage = 7;
 
@@ -13,6 +14,8 @@ const port = 4444;
 const frontURL = 'http://localhost:5173';
 const serverURL = `http://localhost:${port}`;
 
+app.use(express.json({ limit: '50mb' }));
+app.use(express.static('public'));
 app.use(cookieParser());
 
 app.use(cors(
@@ -39,10 +42,43 @@ con.connect(err => {
     console.log('Prisijungimas prie DB buvo sėkmingas');
 });
 
-const error500 = (res, err) => res.status(500).json(err)
+const error500 = (res, err) => res.status(500).json(err);
+const error400 = (res, customCode = 0) => res.status(400).json({
+    msg: { type: 'error', text: 'Invalid request. Code: ' + customCode }
+});
+const error401 = (res, message) => res.status(401).json({
+    msg: { type: 'error', text: message }
+});
 // Identifikacija - pagal numatytą ID identifikuojam vartotoją pvz Ragana-su-šluota
 // Autorizacija - pagal vartotojo identifikuotą ID, vartuotojui suteikiamos teisės pvz gali balsuoti, pirkti cigatertes
 // Autentifikacija - pagal numatytą ID autentifikuojam vartotoją, pvz Arvydas Kijakauskas a/k 555555555
+
+const saveImageAsFile = imageBase64String => {
+
+    if (!imageBase64String) {
+        return null;
+    }
+
+    let type, image;
+
+    if (imageBase64String.indexOf('data:image/png;base64,') === 0) {
+        type = 'png';
+        image = Buffer.from(imageBase64String.replace(/^data:image\/png;base64,/, ''), 'base64');
+    } else if (imageBase64String.indexOf('data:image/jpeg;base64,') === 0) {
+        type = 'jpg';
+        image = Buffer.from(imageBase64String.replace(/^data:image\/jpeg;base64,/, ''), 'base64');
+    } else {
+        error400(res, 'Bad image format 1255');
+        return;
+    }
+
+    const fileName = md5(v4()) + '.' + type;
+
+    fs.writeFileSync('public/upload/' + fileName, image);
+
+    return fileName;
+
+}
 
 // auth middleware
 app.use((req, res, next) => {
@@ -298,6 +334,27 @@ ORDER BY
     })
 
 })
+
+app.post('/stories/new', (req, res) => {
+    const name = req.body.name;
+    const text = req.body.text;
+    const image = saveImageAsFile(req.body.image.src)
+    const request_amount = Number(req.body.requestAmount);
+    const created_at = new Date();
+    const user_id = req.user.id;
+    console.log(user_id)
+    console.log(typeof user_id)
+
+    const sql1 = `
+        INSERT INTO stories
+        (name, text, image, request_amount, collected_amount, user_id, status, created_at, finished )
+        VALUES (?, ?, ?, ?, 0, ?, 0, ?, 0)
+    `;
+    con.query(sql1, [name, text, image, request_amount, user_id, created_at], (err, result) => {
+        if (err) return error500(res, err);
+
+    });
+});
 
 app.post('/updateStoryStatus/:id', (req, res) => {
     const postID = req.params.id;

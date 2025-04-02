@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useState } from "react";
 import * as C from "../Constants/main";
 import * as A from "../Constants/actions";
 import axios from "axios";
@@ -6,6 +6,7 @@ import storiesReducer from "../Reducers/storiesReducer";
 
 export default function useStories() {
   const [stories, dispatchStories] = useReducer(storiesReducer, []);
+  const [storeStory, setStoreStory] = useState(null);
 
   const handleStatusChange = async (id, status) => {
     axios
@@ -21,6 +22,21 @@ export default function useStories() {
   };
 
   useEffect((_) => {
+    if (null === storeStory) {
+      return;
+    }
+
+    axios
+      .post(C.SERVER_URL + "stories/new", storeStory, { withCredentials: true })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+
+  useEffect((_) => {
     axios
       .get(C.SERVER_URL + "stories/1")
       .then((res) => {
@@ -34,5 +50,11 @@ export default function useStories() {
       });
   }, []);
 
-  return { stories, dispatchStories, handleStatusChange };
+  return {
+    stories,
+    dispatchStories,
+    handleStatusChange,
+    storeStory,
+    setStoreStory,
+  };
 }

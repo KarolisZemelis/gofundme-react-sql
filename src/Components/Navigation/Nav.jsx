@@ -1,11 +1,11 @@
 import { NavLink, useLocation } from "react-router";
 import { useState, useContext } from "react";
-import "../../style/nav.scss";
+import { HIDE_NAV_PATHS } from "../../Constants/main";
 import NavBurger from "./NavBurger";
 import MobileNav from "./MobileNav";
-import { HIDE_NAV_PATHS } from "../../Constants/main";
 import Auth from "../../Contexts/Auth";
 import logo from "../images/logobg.png";
+import "../../style/nav.scss";
 
 export default function Nav() {
   const [mobileMenu, setMobileMenu] = useState(null);
@@ -19,7 +19,9 @@ export default function Nav() {
   }
   return (
     <nav className="navContainer">
-      <img src={logo} className="logo" />
+      <NavLink to="/" end className="logo-link">
+        <img src={logo} className="logo" alt="Home" />
+      </NavLink>
       <div className="menu">
         <NavLink to="/" end>
           Home

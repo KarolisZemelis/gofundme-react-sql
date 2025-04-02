@@ -10,7 +10,7 @@ const Data = createContext();
 export const DataProvider = ({ children }) => {
   const [donators, dispatchDonators] = useReducer(donationsReducer, []);
   const [donations, dispatchDonations] = useReducer(donationsReducer, []);
-  const { stories, dispatchStories } = useStories();
+  const { stories, dispatchStories, setStoreStory } = useStories();
   const [modalStoryId, setModalStoryId] = useState(null);
 
   useEffect(
@@ -39,6 +39,7 @@ export const DataProvider = ({ children }) => {
         dispatchDonations,
         stories,
         dispatchStories,
+        setStoreStory,
         modalStoryId,
         setModalStoryId,
       }}
