@@ -96,6 +96,7 @@ app.use((req, res, next) => {
             res.status(500).send('Klaida bandant prisijungti');
             return;
         }
+
         if (result.length === 0) {
             req.user = {
                 role: 'guest',
@@ -103,9 +104,10 @@ app.use((req, res, next) => {
                 id: 0
             }
         } else {
+
             req.user = {
                 role: result[0].role,
-                username: result[0].name,
+                username: result[0].username,
                 id: result[0].id
             }
         }
@@ -223,7 +225,6 @@ app.get('/donations', (req, res) => {
 app.post('/newDonation', (req, res) => {
     const newDonation = req.body;
 
-    // SQL query to insert a new donation
     const sql1 = `
     INSERT INTO donations (story_id, name, donation_amount, created_at)
     VALUES (?, ?, ?, ?);
@@ -236,7 +237,6 @@ app.post('/newDonation', (req, res) => {
         } else {
             console.log('Donation inserted successfully');
 
-            // SQL query to get the story based on the story_id
             const sql2 = `
             SELECT * FROM stories WHERE id = ?;
             `;
@@ -282,10 +282,10 @@ app.post('/newDonation', (req, res) => {
                                 return res.status(500).send('Error updating story');
                             } else {
                                 console.log('Story updated successfully');
-                                // Send both the success message for the donation and the retrieved story
+
                                 res.status(201).send({
                                     message: 'Donation inserted and story updated successfully',
-                                    story: storyResults[0],  // Assuming storyResults contains only one result
+                                    story: storyResults[0],
                                 });
                             }
                         });
@@ -316,6 +316,7 @@ app.get('/stories/:page', (req, res) => {
     s.collected_amount,
     (s.request_amount - s.collected_amount) AS remaining_amount,
     s.finished,
+    s.user_id,
     u.username
 FROM
     stories s

@@ -13,6 +13,7 @@ import NewStory from "./Pages/NewStory";
 import Footer from "./Components/Footer";
 
 function App() {
+  console.log("pasileido App");
   return (
     <AuthProvider>
       <DataProvider>

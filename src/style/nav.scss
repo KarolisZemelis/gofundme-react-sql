@@ -2,7 +2,8 @@
 
 //MOBILE
 .navContainer__menu,
-.login_logout {
+.navContainer__login_logout,
+.logout {
   display: none;
 }
 
@@ -60,6 +61,10 @@
   .burger {
     display: none;
   }
+  .navContainer__login_logout,
+  .logout {
+    display: block;
+  }
   .navContainer {
     display: flex;
     justify-content: space-around;
@@ -77,6 +82,7 @@
         color: v.$dark-gray;
         font-family: v.$ibm;
         font-size: 1.5rem;
+        font-weight: 700;
       }
       a:hover {
         color: v.$primary-color;
@@ -89,6 +95,7 @@
         color: v.$dark-gray;
         font-family: v.$ibm;
         font-size: 1.5rem;
+        font-weight: 700;
       }
       a:hover {
         color: v.$primary-color;

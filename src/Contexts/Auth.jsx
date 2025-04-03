@@ -6,9 +6,10 @@ const Auth = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const { getUser } = useAuth(setUser);
-
+  console.log("esu Auth kontekste");
   useEffect((_) => {
     getUser();
+    console.log("esu Auth kontekste USEEFFECT");
   }, []);
 
   return (

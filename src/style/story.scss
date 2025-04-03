@@ -119,48 +119,22 @@
   }
 }
 
-// &__dialog-centered {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   .story-modal {
-//     &__story__image {
-//       width: 300px;
-//       height: 300px;
-//       background-color: black;
-//       background-repeat: no-repeat;
-//       background-position: center;
-//     }
-//     &__story__money {
-//       &__container {
-//         display: flex;
-//         gap: 15px;
-//         margin-top: 1rem;
-//       }
-//       &__requested_amount,
-//       &__remaining_amount {
-//         text-align: center;
-//         border: 1px solid v.$dark-gray;
-//         border-radius: 15px;
-//         padding: 5px;
-//       }
-//       &__collection_bar {
-//         width: 100%;
-//         height: 3rem;
-//         border-radius: 5px;
-//         border: 1px solid v.$dark-gray;
-//         display: flex;
-//         align-items: center;
-//         margin: 1rem 0 1rem 0;
-//         &__collected_bar {
-//           background-color: rgba(v.$secondary-color, 0.9);
-//           height: 100%;
-//           display: flex;
-//           align-items: center;
-//           justify-content: center;
-//           color: v.$light-gray;
-//         }
-//       }
-//     }
-//   }
-// }
+@media (min-width: v.$m) {
+  .stories-list__story {
+    width: 30%;
+    background-color: rgba(v.$medium-gray, 0.3);
+    padding: 10px;
+    border: 1px solid v.$dark-gray;
+    border-radius: 15px;
+    &__text {
+      p {
+        margin: 0;
+        padding-top: 1rem;
+        height: 80px;
+      }
+    }
+    .bottomButton {
+      margin-top: 0;
+    }
+  }
+}

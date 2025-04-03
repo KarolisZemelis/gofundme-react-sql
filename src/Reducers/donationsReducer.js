@@ -5,10 +5,12 @@ export default function donatorsReducer(state, action) {
     switch (action.type) {
         case A.LOAD_DONATORS_FROM_SERVER:
             newState = [...action.payload];
+            console.log('donators', newState)
             break;
 
         case A.LOAD_DONATIONS_FROM_SERVER:
             newState = [...action.payload];
+            console.log('donations', newState)
             break;
 
         default:

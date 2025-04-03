@@ -46,18 +46,20 @@ export default function useDonations() {
         created_at: new Date().toISOString().split("T")[0],
       });
 
-      const res = await axios.get(C.SERVER_URL + "donators");
+      const [donatorsRes, donationsRes] = await Promise.all([
+        axios.get(C.SERVER_URL + "donators"),
+        axios.get(C.SERVER_URL + "donations"),
+      ]);
+
       dispatchDonators({
         type: A.LOAD_DONATORS_FROM_SERVER,
-        payload: [...res.data.db],
-      });
-      const res1 = await axios.get(C.SERVER_URL + "donations");
-      dispatchDonations({
-        type: A.LOAD_DONATIONS_FROM_SERVER,
-        payload: res1.data.db,
+        payload: [...donatorsRes.data.db],
       });
 
-      setNewDonation({});
+      dispatchDonations({
+        type: A.LOAD_DONATIONS_FROM_SERVER,
+        payload: donationsRes.data.db,
+      });
     } catch (error) {
       console.error(
         "Error submitting donation:",

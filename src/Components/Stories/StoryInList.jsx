@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import useDonations from "../../Hooks/useDonations";
 import Data from "../../Contexts/Data";
+import Auth from "../../Contexts/Auth";
 
 export default function StoryInList({ story }) {
   const { submitDonation, newDonation, setNewDonation } = useDonations();
   const { setModalStoryId } = useContext(Data);
+
   if (story.status === 0) {
     return;
   }
@@ -95,19 +97,18 @@ export default function StoryInList({ story }) {
         </div>
       )}
       <div className="stories-list__story__text">
-        <p>
-          {truncatedText}{" "}
-          {story.text.length > MAX_LENGTH && (
-            <button
-              type="button"
-              className="button"
-              style={{ backgroundColor: "#333333" }}
-              onClick={openModal}
-            >
-              Read more
-            </button>
-          )}
-        </p>
+        <div>
+          {truncatedText} {story.text.length > MAX_LENGTH}
+        </div>
+
+        <button
+          type="button"
+          className="button bottomButton"
+          style={{ backgroundColor: "#333333" }}
+          onClick={openModal}
+        >
+          Read more
+        </button>
       </div>
     </li>
   );

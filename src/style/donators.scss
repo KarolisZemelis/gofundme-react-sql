@@ -15,3 +15,11 @@
     }
   }
 }
+@media (min-width: v.$m) {
+  h1 {
+    margin-bottom: 0;
+  }
+  .donators__container {
+    width: 70%;
+  }
+}

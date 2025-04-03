@@ -20,6 +20,8 @@ export default function StoriesList() {
       <ul className="stories-list">
         {currentPath !== "/admin" &&
           stories.map((s) => <StoryInList key={s.id} story={s} />)}
+      </ul>
+      <ul className="admin__stories-list">
         {currentPath === "/admin" &&
           stories.map((s) => <StoryInListAdmin key={s.id} story={s} />)}
       </ul>

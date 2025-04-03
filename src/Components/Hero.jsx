@@ -78,7 +78,11 @@ export default function Hero() {
           </h4>
         </div>
 
-        <NavLink to="newStory" end className="button">
+        <NavLink
+          to="newStory"
+          end
+          className="hero__randomStoryContainer__heroButton"
+        >
           <div>Create Your Story</div>
         </NavLink>
       </div>

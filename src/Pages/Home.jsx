@@ -13,11 +13,8 @@ export default function Home() {
       <Hero />
       <div className="heroBodyBreak">
         <h2>
-          With just a couple of clicks on{" "}
-          <b>
-            <i>Supportsphere</i>
-          </b>{" "}
-          get the help you need!
+          With just a couple of clicks on <i>Supportsphere</i> get the help you
+          need!
         </h2>
       </div>
       <div className="mainMiddle">

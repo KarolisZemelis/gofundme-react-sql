@@ -14,6 +14,7 @@ export default function Logout() {
       .then((res) => {
         //TO DO ADD MESSAGE HERE
         setUser(res.data.user);
+        console.log("as esu logout prie navigate");
         navigate(C.GO_AFTER_LOGOUT);
       })
       .catch((err) => {

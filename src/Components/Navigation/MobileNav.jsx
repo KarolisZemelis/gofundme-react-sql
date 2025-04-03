@@ -38,7 +38,7 @@ export default function MobileNav({ setMobileMenu, setclickedBars }) {
           </NavLink>
         )}
         {user.role !== "guest" && (
-          <div className="logout">
+          <div className="logoutMobile">
             <NavLink to="/logout" end onClick={() => handleClick()}>
               Logout
             </NavLink>

@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-family: v.$pt;
+  font-family: v.$poppins;
   background: linear-gradient(to top, v.$white, v.$secondary-color);
   border-radius: 0 0 20px 20px;
   &__randomStoryContainer {
@@ -87,6 +87,40 @@
         font-family: v.$ibm;
         font-size: 1.5rem;
       }
+    }
+    a.hero__randomStoryContainer__heroButton {
+      width: 100%;
+      height: 3rem;
+      margin-top: 1rem;
+      background-color: rgba(v.$secondary-color, 0.9);
+
+      flex-shrink: 0;
+      border: 1px solid v.$dark-gray;
+      border-radius: 5px;
+      div {
+        font-size: 1.5rem;
+        color: v.$dark-gray;
+        font-family: v.$poppins;
+        font-weight: 700;
+      }
+    }
+  }
+}
+@media (min-width: v.$m) {
+  a.hero__randomStoryContainer__heroButton {
+    width: 50%;
+    height: 3rem;
+    margin-top: 1rem;
+    background-color: rgba(v.$secondary-color, 0.9);
+
+    flex-shrink: 0;
+    border: 1px solid v.$dark-gray;
+    border-radius: 5px;
+    div {
+      font-size: 1.5rem;
+      color: v.$dark-gray;
+      font-family: v.$poppins;
+      font-weight: 700;
     }
   }
 }

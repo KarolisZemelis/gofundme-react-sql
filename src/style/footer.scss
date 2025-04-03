@@ -34,13 +34,38 @@
     a,
     span {
       text-decoration: none;
-      color: v.$light-gray;
+      color: v.$dark-gray;
       font-family: v.$ibm;
       font-size: 1.5rem;
     }
     a:hover {
-      color: v.$primary-color;
+      color: v.$light-gray;
       text-decoration: underline;
+    }
+  }
+}
+
+@media (min-width: v.$m) {
+  .footer {
+    height: 200px;
+    &__logo-link {
+      padding: 0;
+      width: 20%;
+      a {
+        width: 125px;
+        height: 125px;
+      }
+    }
+    &__menu {
+      &__left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      a,
+      span {
+        color: v.$dark-gray;
+      }
     }
   }
 }
