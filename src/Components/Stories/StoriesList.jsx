@@ -2,11 +2,12 @@ import { useContext } from "react";
 import Data from "../../Contexts/Data";
 import StoryInList from "./StoryInList";
 import StoryInListAdmin from "./StoryInListAdmin";
+import StoryModal from "./StoryModal";
 
 export default function StoriesList() {
   const { stories, submitDonation } = useContext(Data);
   const currentPath = window.location.pathname;
-  console.log("esu stories liste");
+  const { modalStoryId } = useContext(Data);
   if (null === stories) {
     return (
       <div className="bin">
@@ -27,6 +28,7 @@ export default function StoriesList() {
         {currentPath === "/admin" &&
           stories.map((s) => <StoryInListAdmin key={s.id} story={s} />)}
       </ul>
+      {modalStoryId !== null && <StoryModal modalStoryId={modalStoryId} />}
     </div>
   );
 }

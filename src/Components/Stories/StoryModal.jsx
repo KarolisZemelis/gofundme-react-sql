@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
-import useDonations from "../../Hooks/useDonations";
 import Data from "../../Contexts/Data";
 
-export default function StoryModal({ modalStoryId }) {
-  const { submitDonation, newDonation, setNewDonation } = useDonations();
+export default function StoryModal({ modalStoryId, submitDonation }) {
+  const [newDonation, setNewDonation] = useState({
+    name: "",
+    donation_amount: "0",
+  });
   const { setModalStoryId, donations, stories } = useContext(Data);
   const [story, setStory] = useState(null);
   const [storyDonations, setStoryDonations] = useState([]);

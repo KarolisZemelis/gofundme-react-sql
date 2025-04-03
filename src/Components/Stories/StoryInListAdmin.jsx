@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import useStories from "../../Hooks/useStories";
 
 export default function StoryInListAdmin({ story }) {
-  const collectedPercentage = Math.round(
-    (story.collected_amount * 100) / story.request_amount
-  );
   const remainingAmount = Number(story.request_amount - story.collected_amount);
-  const widthStyle = { width: `${collectedPercentage}%` };
   const [checked, setChecked] = useState(story.status === 1);
   const { handleStatusChange } = useStories();
 

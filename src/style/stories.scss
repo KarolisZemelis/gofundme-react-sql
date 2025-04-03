@@ -52,6 +52,15 @@
           display: flex;
           align-items: center;
           margin: 1rem 0 1rem 0;
+          position: relative;
+          &__text {
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            z-index: 1;
+          }
 
           &__collected_bar {
             background-color: rgba(v.$secondary-color, 0.9);
@@ -76,7 +85,6 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-
             input {
               border: 1px solid v.$dark-gray;
               width: 100%;
@@ -84,11 +92,17 @@
             }
           }
         }
+        .button.support {
+          margin-top: 1rem;
+          margin-bottom: 1rem;
+        }
       }
       &__text {
         display: flex;
         flex-direction: column;
         font-family: v.$ibm;
+        max-height: 60px;
+        min-height: 60px;
       }
     }
   }

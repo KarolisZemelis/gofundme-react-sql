@@ -44,14 +44,15 @@ export default function StoryInList({ story, submitDonation }) {
       </div>
       <div className="stories-list__story__collected_amount">
         <div className="stories-list__story__collected_amount__collection_bar">
+          {story.collected_amount > 0 && (
+            <p className="stories-list__story__collected_amount__collection_bar__text">
+              {story.collected_amount}€
+            </p>
+          )}
           <div
             className="stories-list__story__collected_amount__collection_bar__collected_bar"
             style={widthStyle}
-          >
-            <div className="stories-list__story__collected_amount__collection_bar__collected_bar__text">
-              {story.collected_amount > 0 && <p>{story.collected_amount}€</p>}
-            </div>
-          </div>
+          ></div>
         </div>
       </div>
       {story.remaining_amount > 0 && (
@@ -93,7 +94,7 @@ export default function StoryInList({ story, submitDonation }) {
             </div>
           </div>
           <button
-            className="button"
+            className="button support"
             onClick={(_) => submitDonation(story.id, newDonation)}
           >
             Support
@@ -104,16 +105,16 @@ export default function StoryInList({ story, submitDonation }) {
         <div>
           {truncatedText} {story.text.length > MAX_LENGTH}
         </div>
-
-        <button
-          type="button"
-          className="button bottomButton"
-          style={{ backgroundColor: "#333333" }}
-          onClick={openModal}
-        >
-          Read more
-        </button>
       </div>
+
+      <button
+        type="button"
+        className="button bottomButton"
+        style={{ backgroundColor: "#333333" }}
+        onClick={openModal}
+      >
+        Read more
+      </button>
     </li>
   );
 }
