@@ -28,7 +28,12 @@ export default function StoriesList() {
         {currentPath === "/admin" &&
           stories.map((s) => <StoryInListAdmin key={s.id} story={s} />)}
       </ul>
-      {modalStoryId !== null && <StoryModal modalStoryId={modalStoryId} />}
+      {modalStoryId !== null && (
+        <StoryModal
+          modalStoryId={modalStoryId}
+          submitDonation={submitDonation}
+        />
+      )}
     </div>
   );
 }

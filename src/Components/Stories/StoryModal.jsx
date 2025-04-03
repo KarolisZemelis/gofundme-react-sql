@@ -120,7 +120,7 @@ export default function StoryModal({ modalStoryId, submitDonation }) {
             </div>
             <button
               className="button"
-              onClick={(_) => submitDonation(story.id)}
+              onClick={(_) => submitDonation(story.id, newDonation)}
             >
               Support
             </button>
