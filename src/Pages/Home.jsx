@@ -8,6 +8,7 @@ import "../style/main.scss";
 
 export default function Home() {
   const { modalStoryId } = useContext(Data);
+  console.log("home page");
   return (
     <section className="main">
       <Hero />

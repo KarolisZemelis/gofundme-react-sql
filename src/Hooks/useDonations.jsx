@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import * as C from "../Constants/main";
 import * as A from "../Constants/actions";
+import donationsReducer from "../Reducers/donationsReducer";
 import axios from "axios";
-import Data from "../Contexts/Data";
 
-export default function useDonations() {
-  const { donators, dispatchDonators, dispatchDonations } = useContext(Data);
-  const [newDonation, setNewDonation] = useState();
+export default function useDonations(dispatchStories) {
+  const [donators, dispatchDonators] = useReducer(donationsReducer, []);
+  const [donations, dispatchDonations] = useReducer(donationsReducer, []);
 
   useEffect((_) => {
     axios
@@ -33,7 +33,7 @@ export default function useDonations() {
       });
   }, []);
 
-  const submitDonation = async (storyId) => {
+  const submitDonation = async (storyId, newDonation) => {
     if (!newDonation?.name || !newDonation?.donation_amount) {
       alert("Please fill in all fields.");
       return;
@@ -46,19 +46,23 @@ export default function useDonations() {
         created_at: new Date().toISOString().split("T")[0],
       });
 
-      const [donatorsRes, donationsRes] = await Promise.all([
+      const [donatorsRes, donationsRes, storiesRes] = await Promise.all([
         axios.get(C.SERVER_URL + "donators"),
         axios.get(C.SERVER_URL + "donations"),
+        axios.get(C.SERVER_URL + "stories"),
       ]);
 
       dispatchDonators({
         type: A.LOAD_DONATORS_FROM_SERVER,
-        payload: [...donatorsRes.data.db],
+        payload: donatorsRes.data.db,
       });
-
       dispatchDonations({
         type: A.LOAD_DONATIONS_FROM_SERVER,
         payload: donationsRes.data.db,
+      });
+      dispatchStories({
+        type: A.LOAD_STORIES_FROM_SERVER,
+        payload: storiesRes.data.db,
       });
     } catch (error) {
       console.error(
@@ -71,8 +75,8 @@ export default function useDonations() {
   return {
     donators,
     dispatchDonators,
-    newDonation,
-    setNewDonation,
+    donations,
+    dispatchDonations,
     submitDonation,
   };
 }

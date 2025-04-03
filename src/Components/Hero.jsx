@@ -10,8 +10,10 @@ export default function Hero() {
   const [isLoading, setIsLoading] = useState(true);
 
   const selectRandomStory = () => {
-    if (stories && stories.length > 0) {
-      let randomStory = stories[getRandomInt(0, stories.length - 1)];
+    const enabledStories = stories.filter((story) => story.status === 1);
+    if (enabledStories && enabledStories.length > 0) {
+      let randomStory =
+        enabledStories[getRandomInt(0, enabledStories.length - 1)];
       const remainingAmount =
         randomStory.request_amount - randomStory.collected_amount;
       const collectedPercentage = Math.round(

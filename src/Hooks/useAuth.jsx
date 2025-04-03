@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 export default function useAuth(setUser) {
   const [loginForm, setLoginForm] = useState(null);
   const navigate = useNavigate();
-
+  console.log("useAuth");
   const getUser = (_) => {
     axios
       .get(C.SERVER_URL + "auth-user", { withCredentials: true })

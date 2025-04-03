@@ -224,7 +224,7 @@ app.get('/donations', (req, res) => {
 
 app.post('/newDonation', (req, res) => {
     const newDonation = req.body;
-
+    console.log('test')
     const sql1 = `
     INSERT INTO donations (story_id, name, donation_amount, created_at)
     VALUES (?, ?, ?, ?);
@@ -234,7 +234,8 @@ app.post('/newDonation', (req, res) => {
         if (err) {
             console.error('Error inserting donation:', err);
             return res.status(500).send('Error inserting donation');
-        } else {
+        }
+        else {
             console.log('Donation inserted successfully');
 
             const sql2 = `
@@ -245,10 +246,12 @@ app.post('/newDonation', (req, res) => {
                 if (err) {
                     console.error('Error retrieving story:', err);
                     return res.status(500).send('Error retrieving story');
-                } else {
+                }
+
+                else {
                     console.log('Story retrieved successfully');
                     const remainingAmount = storyResults.request_amount - (storyResults.collected_amount + newDonation.donation_amount)
-                    // SQL query to update the collected_amount in the stories table
+
                     if (remainingAmount > 0) {
                         const sql3 = `
                         UPDATE stories
@@ -262,14 +265,14 @@ app.post('/newDonation', (req, res) => {
                                 return res.status(500).send('Error updating story');
                             } else {
                                 console.log('Story updated successfully');
-                                // Send both the success message for the donation and the retrieved story
+
                                 res.status(201).send({
-                                    message: 'Donation inserted and story updated successfully',
-                                    story: storyResults[0],  // Assuming storyResults contains only one result
+                                    message: 'Donation inserted and story updated successfully'
                                 });
                             }
                         });
-                    } else {
+                    }
+                    else {
                         const sql3 = `
                         UPDATE stories
                         SET collected_amount = collected_amount + ?,finished = 1
@@ -298,13 +301,9 @@ app.post('/newDonation', (req, res) => {
 });
 
 //STORIES
-app.get('/stories/:page', (req, res) => {
-    const postsPerPage = 7
-    const page = parseInt(req.params.page);
-    if (!Number.isInteger(page) || page < 1) {
-        return res.status(400).json({ success: false, error: 'Invalid page number' });
-    }
-    const offset = (page - 1) * postsPerPage;
+app.get('/stories', (req, res) => {
+    console.log('test')
+
     const sql = `
    SELECT
     s.id,
@@ -324,9 +323,8 @@ JOIN
     users u ON s.user_id = u.id
 ORDER BY
     remaining_amount DESC
-
     `
-    con.query(sql, [postsPerPage, offset], (err, result) => {
+    con.query(sql, (err, result) => {
         if (err) return error500(res, err)
         result = result.map(r => (
             {

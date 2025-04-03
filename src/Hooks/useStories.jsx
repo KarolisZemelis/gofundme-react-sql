@@ -37,9 +37,8 @@ export default function useStories() {
   });
 
   useEffect((_) => {
-    console.log("esu useStories use effect");
     axios
-      .get(C.SERVER_URL + "stories/1")
+      .get(C.SERVER_URL + "stories")
       .then((res) => {
         dispatchStories({
           type: A.LOAD_STORIES_FROM_SERVER,

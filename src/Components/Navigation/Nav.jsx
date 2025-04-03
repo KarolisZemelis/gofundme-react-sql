@@ -12,7 +12,7 @@ export default function Nav() {
 
   const { pathname } = useLocation();
   const { user } = useContext(Auth);
-
+  console.log("esu nave");
   if (HIDE_NAV_PATHS.includes(pathname)) {
     return null;
   }

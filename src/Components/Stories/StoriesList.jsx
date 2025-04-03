@@ -4,9 +4,9 @@ import StoryInList from "./StoryInList";
 import StoryInListAdmin from "./StoryInListAdmin";
 
 export default function StoriesList() {
-  const { stories } = useContext(Data);
+  const { stories, submitDonation } = useContext(Data);
   const currentPath = window.location.pathname;
-
+  console.log("esu stories liste");
   if (null === stories) {
     return (
       <div className="bin">
@@ -19,7 +19,9 @@ export default function StoriesList() {
       <h1>Stories</h1>
       <ul className="stories-list">
         {currentPath !== "/admin" &&
-          stories.map((s) => <StoryInList key={s.id} story={s} />)}
+          stories.map((s) => (
+            <StoryInList key={s.id} story={s} submitDonation={submitDonation} />
+          ))}
       </ul>
       <ul className="admin__stories-list">
         {currentPath === "/admin" &&

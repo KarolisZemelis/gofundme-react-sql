@@ -1,34 +1,20 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useState } from "react";
 import useStories from "../Hooks/useStories";
-import donationsReducer from "../Reducers/donationsReducer";
+import useDonations from "../Hooks/useDonations";
 
 const Data = createContext();
 
 export const DataProvider = ({ children }) => {
-  const [donators, dispatchDonators, donations, dispatchDonations] = useReducer(
-    donationsReducer,
-    []
-  );
   const { stories, dispatchStories, setStoreStory } = useStories();
+  const {
+    donators,
+    dispatchDonators,
+    donations,
+    dispatchDonations,
+    submitDonation,
+  } = useDonations(dispatchStories);
+
   const [modalStoryId, setModalStoryId] = useState(null);
-  console.log("esu Data kontekste");
-  // useEffect(
-  //   (_) => {
-  //     axios
-  //       .get(C.SERVER_URL + "stories/1")
-  //       .then((res) => {
-  //         dispatchStories({
-  //           type: A.LOAD_STORIES_FROM_SERVER,
-  //           payload: res.data.db,
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //     console.log("esu Data kontekste USEEFFECT");
-  //   },
-  //   [donators, donations]
-  // );
 
   return (
     <Data.Provider
@@ -37,6 +23,7 @@ export const DataProvider = ({ children }) => {
         dispatchDonators,
         donations,
         dispatchDonations,
+        submitDonation,
         stories,
         dispatchStories,
         setStoreStory,

@@ -1,11 +1,12 @@
-import { useContext } from "react";
-import useDonations from "../../Hooks/useDonations";
+import { useContext, useState } from "react";
 import Data from "../../Contexts/Data";
-import Auth from "../../Contexts/Auth";
 
-export default function StoryInList({ story }) {
-  const { submitDonation, newDonation, setNewDonation } = useDonations();
+export default function StoryInList({ story, submitDonation }) {
   const { setModalStoryId } = useContext(Data);
+  const [newDonation, setNewDonation] = useState({
+    name: "",
+    donation_amount: "0",
+  });
 
   if (story.status === 0) {
     return;
@@ -91,7 +92,10 @@ export default function StoryInList({ story }) {
               />
             </div>
           </div>
-          <button className="button" onClick={(_) => submitDonation(story.id)}>
+          <button
+            className="button"
+            onClick={(_) => submitDonation(story.id, newDonation)}
+          >
             Support
           </button>
         </div>
