@@ -56,21 +56,20 @@ export default function StoryModal({ modalStoryId, submitDonation }) {
             </div>
           </div>
           <div className="story-modal__dialog-centered__story__money__collected_amount">
-            <div className="story-modal__dialog-centered__story__money__collection_bar">
+            <div className="story-modal__dialog-centered__story__money__collected_amount__collection_bar">
+              {story.collected_amount > 0 && (
+                <p className="story-modal__dialog-centered__story__money__collected_amount__collection_bar__text">
+                  {story.collected_amount}€
+                </p>
+              )}
               <div
-                className="story-modal__dialog-centered__story__money__collection_bar__collected_bar"
+                className="story-modal__dialog-centered__story__money__collected_amount__collection_bar__collected_bar"
                 style={{
                   width: `${Math.round(
                     (story.collected_amount * 100) / story.request_amount
                   )}%`,
                 }}
-              >
-                <div className="story-modal__story__money__collection_bar__collected_bar">
-                  {story.collected_amount > 0 && (
-                    <p>{story.collected_amount}€</p>
-                  )}
-                </div>
-              </div>
+              ></div>
             </div>
           </div>
         </div>

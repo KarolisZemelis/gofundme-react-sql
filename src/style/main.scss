@@ -4,7 +4,7 @@
 @use "login";
 @use "hero";
 @use "navMobile";
-@use "story";
+@use "storyModal";
 @use "donators";
 @use "newStory";
 @use "footer";
@@ -33,6 +33,19 @@ body {
   border: 1px solid v.$dark-gray;
   border-radius: 5px;
   flex-shrink: 0;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease; // Add smooth transitions
+
+  &:hover {
+    background-color: rgba(v.$secondary-color, 1);
+    color: v.$dark-gray;
+    border-color: v.$secondary-color;
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: darken(rgba(v.$secondary-color, 1), 10%);
+  }
 }
 
 .heroBodyBreak {

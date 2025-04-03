@@ -64,23 +64,35 @@
           border-radius: 15px;
           padding: 5px;
         }
-        &__collection_bar {
-          width: 100%;
-          height: 3rem;
-          border-radius: 5px;
-          border: 1px solid v.$dark-gray;
-          display: flex;
-          align-items: center;
-          margin: 1rem 0 0 0;
-          &__collected_bar {
-            background-color: rgba(v.$secondary-color, 0.9);
-            height: 100%;
+        &__collected_amount {
+          &__collection_bar {
+            width: 100%;
+            height: 3rem;
+            border-radius: 5px;
+            border: 1px solid v.$dark-gray;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: v.$light-gray;
+            margin: 1rem 0 0 0;
+            position: relative;
+            &__text {
+              position: absolute;
+              top: 20%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              white-space: nowrap;
+              z-index: 1;
+            }
+            &__collected_bar {
+              background-color: rgba(v.$secondary-color, 0.9);
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: v.$light-gray;
+            }
           }
         }
+
         &__donate {
           width: 100%;
           &__container {
