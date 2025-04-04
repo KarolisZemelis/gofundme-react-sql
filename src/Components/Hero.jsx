@@ -5,7 +5,7 @@ import getRandomInt from "../Constants/getRandomInt";
 import capitalizeFirstLetters from "../Constants/capitalize";
 
 export default function Hero() {
-  const { stories, setModalStoryId } = useContext(Data);
+  const { stories, setModalStoryId } = useContext(Data) || {};
   const [heroStory, setHeroStory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 

@@ -1,16 +1,13 @@
-import { useContext } from "react";
 import DonatorsList from "../Components/Donations/DonatorsList";
 import StoriesList from "../Components/Stories/StoriesList";
-
 import Hero from "../Components/Hero";
-import Data from "../Contexts/Data";
+import Message from "../Components/Message";
 import "../style/main.scss";
 
 export default function Home() {
-  const { modalStoryId } = useContext(Data);
-  console.log("home page");
   return (
     <section className="main">
+      <Message />
       <Hero />
       <div className="heroBodyBreak">
         <h2>

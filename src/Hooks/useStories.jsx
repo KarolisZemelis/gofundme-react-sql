@@ -21,20 +21,25 @@ export default function useStories() {
       });
   };
 
-  useEffect((_) => {
-    if (null === storeStory) {
-      return;
-    }
-    axios
-      .post(C.SERVER_URL + "stories/new", storeStory, { withCredentials: true })
-      .then((res) => {
-        console.log(res.data);
-        setStoreStory(null);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
+  useEffect(
+    (_) => {
+      if (null === storeStory) {
+        return;
+      }
+      axios
+        .post(C.SERVER_URL + "stories/new", storeStory, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          console.log(res.data);
+          setStoreStory(null);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    [storeStory]
+  );
 
   useEffect((_) => {
     axios
