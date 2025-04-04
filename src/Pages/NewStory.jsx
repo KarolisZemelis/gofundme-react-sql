@@ -1,13 +1,19 @@
 import { useState, useContext } from "react";
 import useImage from "../Hooks/useImage";
 import Data from "../Contexts/Data";
+import Messages from "../Contexts/Messages";
+import { useNavigate } from "react-router";
+import * as C from "../Constants/main";
+import { v4 } from "uuid";
 
 export default function NewStory() {
   const { image, readFile, remImage } = useImage();
   const { setStoreStory } = useContext(Data);
+  const { setMessages } = useContext(Messages);
   const [name, setName] = useState("");
   const [text, setText] = useState("");
   const [requestAmount, setRequestAmount] = useState(0);
+  const navigate = useNavigate();
   const handleSubmit = (_) => {
     setStoreStory({
       name,
@@ -15,6 +21,18 @@ export default function NewStory() {
       requestAmount,
       image,
     });
+    setMessages((prevMessages) => {
+      return [
+        {
+          id: v4(),
+          type: "success",
+          text: "Story sent succesully, wait for confirmation",
+        },
+        ...prevMessages,
+      ];
+    });
+
+    navigate(C.GO_AFTER_NEW_STORY);
   };
   return (
     <section className="main">
