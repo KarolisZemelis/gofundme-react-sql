@@ -26,7 +26,7 @@ export default function NewStory() {
         {
           id: v4(),
           type: "success",
-          text: "Story sent succesully, wait for confirmation",
+          text: "Story submitted succesully, wait for confirmation",
         },
         ...prevMessages,
       ];

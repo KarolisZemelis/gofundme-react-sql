@@ -1,6 +1,7 @@
 import DonatorInList from "./DonatorInList";
 import Data from "../../Contexts/Data";
 import { useContext } from "react";
+import { v4 } from "uuid";
 
 export default function DonatorsList() {
   const { donators } = useContext(Data);
@@ -16,8 +17,8 @@ export default function DonatorsList() {
     <div className="donators__container">
       <h1>Top 10 Donators</h1>
       <ul className="donators__container__list">
-        {donators.map((d, index) => (
-          <DonatorInList key={index} donator={d} />
+        {donators.map((d) => (
+          <DonatorInList key={v4()} donator={d} />
         ))}
       </ul>
     </div>

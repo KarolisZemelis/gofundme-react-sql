@@ -188,11 +188,9 @@ app.post('/logout', (req, res) => {
 //DONATIONS
 app.get('/donators', (req, res) => {
     const sql = `
-        SELECT name, SUM(donation_amount) AS total_donated
+        SELECT *
         FROM donations
-        GROUP BY name
-        ORDER BY total_donated DESC
-       LIMIT 10
+
     `;
 
     con.query(sql, (err, result) => {

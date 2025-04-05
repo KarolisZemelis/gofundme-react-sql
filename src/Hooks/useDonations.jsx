@@ -63,9 +63,13 @@ export default function useDonations(dispatchStories) {
         ]);
       })
       .then(([donatorsRes, donationsRes, storiesRes]) => {
+        // dispatchDonators({
+        //   type: A.LOAD_DONATORS_FROM_SERVER,
+        //   payload: donatorsRes.data.db,
+        // });
         dispatchDonators({
-          type: A.LOAD_DONATORS_FROM_SERVER,
-          payload: donatorsRes.data.db,
+          type: A.UPDATE_DONATORS,
+          payload: newDonation,
         });
         dispatchDonations({
           type: A.LOAD_DONATIONS_FROM_SERVER,
