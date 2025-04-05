@@ -36,7 +36,7 @@ export default function useDonations(dispatchStories) {
       });
   }, []);
 
-  const submitDonation = async (storyId, newDonation) => {
+  const submitDonation = (storyId, newDonation) => {
     if (!newDonation?.name || !newDonation?.donation_amount) {
       alert("Please fill in all fields.");
       return;
@@ -55,30 +55,21 @@ export default function useDonations(dispatchStories) {
             ...prevMessages,
           ];
         });
-
-        return Promise.all([
-          axios.get(C.SERVER_URL + "donators"),
-          axios.get(C.SERVER_URL + "donations"),
-          axios.get(C.SERVER_URL + "stories"),
-        ]);
       })
-      .then(([donatorsRes, donationsRes, storiesRes]) => {
-        // dispatchDonators({
-        //   type: A.LOAD_DONATORS_FROM_SERVER,
-        //   payload: donatorsRes.data.db,
-        // });
+      .then(() => {
         dispatchDonators({
           type: A.UPDATE_DONATORS,
           payload: newDonation,
         });
         dispatchDonations({
-          type: A.LOAD_DONATIONS_FROM_SERVER,
-          payload: donationsRes.data.db,
+          type: A.UPDATE_DONATIONS,
+          payload: { ...newDonation, story_id: storyId },
         });
-        dispatchStories({
-          type: A.LOAD_STORIES_FROM_SERVER,
-          payload: storiesRes.data.db,
-        });
+
+        // dispatchStories({
+        //   type: A.LOAD_STORIES_FROM_SERVER,
+        //   payload: storiesRes.data.db,
+        // });
       })
       .catch((error) => {
         console.error(

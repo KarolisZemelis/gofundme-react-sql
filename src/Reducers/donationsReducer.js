@@ -1,5 +1,5 @@
 import * as A from "../Constants/actions";
-
+import { v4 } from "uuid";
 export default function donatorsReducer(state, action) {
     let newState;
     switch (action.type) {
@@ -21,7 +21,15 @@ export default function donatorsReducer(state, action) {
             break;
 
         case A.LOAD_DONATIONS_FROM_SERVER:
+            newState = structuredClone(state);
             newState = action.payload;
+            break;
+
+        case A.UPDATE_DONATIONS:
+            console.log('action.payload', action.payload)
+            newState = structuredClone(state);
+            newState = [{ id: v4(), ...action.payload }, ...state];
+            console.log(newState, 'esu update donations')
             break;
 
         case A.UPDATE_DONATORS:

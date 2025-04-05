@@ -207,7 +207,7 @@ app.get('/donations', (req, res) => {
     const sql = `
         SELECT *
         FROM donations
-        ORDER BY donation_amount DESC
+        ORDER BY id DESC
     `;
 
     con.query(sql, (err, result) => {
@@ -300,7 +300,6 @@ app.post('/newDonation', (req, res) => {
 
 //STORIES
 app.get('/stories', (req, res) => {
-    console.log('test')
 
     const sql = `
    SELECT
