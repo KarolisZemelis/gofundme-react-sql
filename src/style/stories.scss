@@ -15,6 +15,9 @@
       list-style-type: none;
       border-bottom: 1px solid v.$dark-gray;
       margin-bottom: 1rem;
+
+      display: flex;
+      flex-direction: column;
       &__name {
         height: 15rem;
         border-radius: 10px;
@@ -97,12 +100,17 @@
           margin-bottom: 1rem;
         }
       }
-      &__text {
-        display: flex;
-        flex-direction: column;
-        font-family: v.$ibm;
-        max-height: 60px;
-        min-height: 60px;
+      &__container {
+        &__text {
+          display: flex;
+          flex-direction: column;
+          font-family: v.$ibm;
+          min-height: 60px;
+          flex-grow: 1;
+        }
+      }
+      & > .button.bottomButton {
+        margin-top: auto;
       }
     }
   }

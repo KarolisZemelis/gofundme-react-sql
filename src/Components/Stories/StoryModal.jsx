@@ -23,7 +23,7 @@ export default function StoryModal({ modalStoryId, submitDonation }) {
       setStoryDonations(filteredDonations);
     }
   }, [donations, story]);
-  console.log(storyDonations, "storyDonations");
+
   if (!story) {
     return <div>Loading...</div>;
   }

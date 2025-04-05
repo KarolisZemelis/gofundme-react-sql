@@ -90,7 +90,7 @@ export default function NewStory() {
         </div>
         <button
           type="story-form__submit"
-          className="submit"
+          className="button submit"
           onClick={handleSubmit}
         >
           Submit Story

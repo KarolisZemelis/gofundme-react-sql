@@ -5,3 +5,4 @@ export const UPDATE_DONATIONS = 1003;
 
 export const LOAD_STORIES_FROM_SERVER = 2000;
 export const UPDATE_STORY_IN_SERVER = 2001;
+export const UPDATE_STORIES = 2002;

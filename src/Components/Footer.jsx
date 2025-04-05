@@ -11,61 +11,51 @@ export default function Footer() {
   }
   return (
     <div className="footer">
-      <div className="footer__logo-link">
-        <NavLink to="/" end>
-          <img src={logo} className="logo" alt="Home" />
-        </NavLink>
-      </div>
-      <div className="footer__menu">
-        <div className="footer__menu__left">
+      <div className="footer__top">
+        {" "}
+        <div className="footer__top__logo-link">
           <NavLink to="/" end>
-            Home
+            <img src={logo} className="logo" alt="Home" />
           </NavLink>
-          <NavLink to="/newStory" end>
-            Fundraise
-          </NavLink>
-          <NavLink to="/about" end>
-            About Us
-          </NavLink>
-          {user.role === "guest" && (
-            <NavLink to="/login" end>
-              Login
-            </NavLink>
-          )}
-          {user.role === "admin" && (
-            <NavLink to="/admin" end>
-              Admin
-            </NavLink>
-          )}
         </div>
-        <div className="footer__menu__right">
-          {user.role !== "guest" && (
-            <span>
-              {user.username},{" "}
-              <NavLink to="/logout" end>
-                Logout
-              </NavLink>
-            </span>
-          )}
-        </div>
-
-        {/* 
-        <div className="login_logout">
-          {user.role === "guest" && (
-            <NavLink to="/login" end>
-              Login
+        <div className="footer__top__menu">
+          <div className="footer__top__menu__left">
+            <NavLink to="/" end>
+              Home
             </NavLink>
-          )}
-          {user.role !== "guest" && (
-            <div className="logout">
-              {user.username}
-              <NavLink to="/logout" end>
-                Logout
+            <NavLink to="/newStory" end>
+              Fundraise
+            </NavLink>
+            <NavLink to="/about" end>
+              About Us
+            </NavLink>
+            {user.role === "guest" && (
+              <NavLink to="/login" end>
+                Login
               </NavLink>
-            </div>
-          )}
-        </div> */}
+            )}
+            {user.role === "admin" && (
+              <NavLink to="/admin" end>
+                Admin
+              </NavLink>
+            )}
+          </div>
+          <div className="footer__top__menu__right">
+            {user.role !== "guest" && (
+              <span>
+                {user.username},{" "}
+                <NavLink to="/logout" end>
+                  Logout
+                </NavLink>
+              </span>
+            )}
+          </div>
+        </div>
       </div>
+
+      <p>
+        &copy; {new Date().getFullYear()} SupportSphere. All rights reserved.
+      </p>
     </div>
   );
 }

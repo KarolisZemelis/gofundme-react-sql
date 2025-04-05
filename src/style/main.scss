@@ -10,6 +10,7 @@
 @use "footer";
 @use "admin";
 @use "messages";
+@use "about";
 
 * {
   box-sizing: border-box;
@@ -35,7 +36,7 @@ body {
   border-radius: 5px;
   flex-shrink: 0;
   transition: background-color 0.3s ease, color 0.3s ease,
-    border-color 0.3s ease; // Add smooth transitions
+    border-color 0.3s ease;
 
   &:hover {
     background-color: rgba(v.$secondary-color, 1);
@@ -45,7 +46,11 @@ body {
   }
 
   &:active {
-    background-color: darken(rgba(v.$secondary-color, 1), 10%);
+    background-color: color-mix(
+      in srgb,
+      rgba(v.$secondary-color, 1) 90%,
+      black 10%
+    );
   }
 }
 

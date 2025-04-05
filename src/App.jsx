@@ -14,7 +14,6 @@ import NewStory from "./Pages/NewStory";
 import Footer from "./Components/Footer";
 
 function App() {
-  console.log("pasileido App");
   return (
     <AuthProvider>
       <MessagesProvider>
@@ -23,7 +22,7 @@ function App() {
             <Nav />
             <Routes>
               <Route index element={<Home />} />
-              <Route path="aboutUs" element={<About />} />
+              <Route path="about" element={<About />} />
               <Route path="newStory" element={<NewStory />} />
               <Route path="admin" element={<Admin />} />
               <Route path="login" element={<Login />} />

@@ -66,10 +66,10 @@ export default function useDonations(dispatchStories) {
           payload: { ...newDonation, story_id: storyId },
         });
 
-        // dispatchStories({
-        //   type: A.LOAD_STORIES_FROM_SERVER,
-        //   payload: storiesRes.data.db,
-        // });
+        dispatchStories({
+          type: A.UPDATE_STORIES,
+          payload: { ...newDonation, story_id: storyId },
+        });
       })
       .catch((error) => {
         console.error(

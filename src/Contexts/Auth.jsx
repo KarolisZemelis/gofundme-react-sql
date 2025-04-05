@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   useEffect((_) => {
     getUser();
   }, []);
-  console.log("auth");
+
   return (
     <Auth.Provider value={{ user, setUser }}>
       {null === user ? <span>Authorizing...</span> : children}

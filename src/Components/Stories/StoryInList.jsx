@@ -101,8 +101,8 @@ export default function StoryInList({ story, submitDonation }) {
           </button>
         </div>
       )}
-      <div className="stories-list__story__text">
-        <div>
+      <div className="stories-list__story__container">
+        <div className="stories-list__story__container__text">
           {truncatedText} {story.text.length > MAX_LENGTH}
         </div>
       </div>
