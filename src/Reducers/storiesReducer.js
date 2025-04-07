@@ -7,7 +7,8 @@ export default function storiesReducer(state, action) {
         case A.LOAD_STORIES_FROM_SERVER:
             newState = action.payload;
             break;
-        case A.UPDATE_STORIES:
+        case A.UPDATE_STORIES_AFTER_DONATION:
+            console.log('*******************')
             newState = state.map(story => {
                 if (story.id === action.payload.story_id) {
                     return {
@@ -21,7 +22,19 @@ export default function storiesReducer(state, action) {
                 return story;
             });
             break;
+        case A.UPDATE_STORIES_AFTER_STATUS:
+            newState = state.map(story => {
+                if (story.id === action.payload.story_id) {
+                    return {
+                        ...story,
+                        status: action.payload.status === true ? 1 : 0
+                    };
+                } else {
+                    return story;
+                }
 
+            });
+            break;
 
         default: newState = state;
     }

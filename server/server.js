@@ -11,7 +11,7 @@ const postsPerPage = 7;
 const app = express();
 const port = 4444;
 
-const frontURL = 'http://localhost:5175';
+const frontURL = 'http://localhost:5173';
 const serverURL = `http://localhost:${port}`;
 
 app.use(express.json({ limit: '50mb' }));
@@ -360,6 +360,7 @@ app.post('/stories/new', (req, res) => {
 });
 
 app.post('/updateStoryStatus/:id', (req, res) => {
+    console.log('test')
     const postID = req.params.id;
     const status = req.body.status === true ? 1 : 0
     const sql1 = `
@@ -368,11 +369,14 @@ app.post('/updateStoryStatus/:id', (req, res) => {
     WHERE id = ?
     `;
     con.query(sql1, [status, postID], (err) => {
-        if (err) return error500(res, err);
+        if (err) {
+            console.error("Database error updating story status:", err);
+            return error500(res, err);
+        }
         res.status(200).json({
             msg: { type: 'success', text: `Story status has been updated` },
         });
-        return;
+
     });
 })
 

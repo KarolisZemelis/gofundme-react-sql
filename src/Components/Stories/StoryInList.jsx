@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import Data from "../../Contexts/Data";
 
-export default function StoryInList({ story, submitDonation }) {
-  const { setModalStoryId } = useContext(Data);
+export default function StoryInList({ story }) {
+  const { setModalStoryId, submitDonation } = useContext(Data);
   const [newDonation, setNewDonation] = useState({
     name: "",
     donation_amount: "0",

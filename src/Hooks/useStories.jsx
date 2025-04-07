@@ -8,19 +8,6 @@ export default function useStories() {
   const [stories, dispatchStories] = useReducer(storiesReducer, []);
   const [storeStory, setStoreStory] = useState(null);
 
-  const handleStatusChange = async (id, status) => {
-    axios
-      .post(C.SERVER_URL + `updateStoryStatus/${id}`, {
-        status: status,
-      })
-      .then((res) => {
-        console.log("success");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   useEffect(
     (_) => {
       if (null === storeStory) {
@@ -55,10 +42,27 @@ export default function useStories() {
       });
   }, []);
 
+  // const handleStatusChange = async (id, status) => {
+  //   axios
+  //     .post(C.SERVER_URL + `updateStoryStatus/${id}`, {
+  //       status: status,
+  //     })
+  //     .then((res) => {
+  //       dispatchStories({
+  //         type: A.UPDATE_STORIES_AFTER_STATUS,
+  //         payload: { story_id: id, status: status },
+  //       });
+  //       console.log("success");
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
   return {
     stories,
     dispatchStories,
-    handleStatusChange,
+    // handleStatusChange,
     storeStory,
     setStoreStory,
   };

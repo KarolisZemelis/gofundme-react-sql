@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import useStories from "../../Hooks/useStories";
+import { useContext, useEffect, useState } from "react";
+import Data from "../../Contexts/Data";
 
 export default function StoryInListAdmin({ story }) {
   const remainingAmount = Number(story.request_amount - story.collected_amount);
   const [checked, setChecked] = useState(story.status === 1);
-  const { handleStatusChange } = useStories();
+  const { handleStatusChange } = useContext(Data);
 
   useEffect(() => {
     setChecked(story.status === 1);

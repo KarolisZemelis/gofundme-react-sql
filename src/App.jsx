@@ -15,8 +15,8 @@ import Footer from "./Components/Footer";
 
 function App() {
   return (
-    <AuthProvider>
-      <MessagesProvider>
+    <MessagesProvider>
+      <AuthProvider>
         <DataProvider>
           <Body>
             <Nav />
@@ -32,8 +32,8 @@ function App() {
             <Footer />
           </Body>
         </DataProvider>
-      </MessagesProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </MessagesProvider>
   );
 }
 

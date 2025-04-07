@@ -9,7 +9,7 @@
   justify-content: center;
   width: 100%;
   margin-bottom: 1rem;
-  &__name {
+  box &__name {
     width: 100%;
     background-color: v.$secondary-color;
     h3 {
@@ -47,6 +47,11 @@
         text-align: center;
         display: flex;
         gap: 5px;
+        border-bottom: 1px solid v.$dark-gray;
+        p {
+          margin: 0;
+          width: 100%;
+        }
       }
     }
     &__text {
@@ -117,7 +122,7 @@
       &__text {
         padding: 1rem;
         border: 1px solid v.$dark-gray;
-        height: 200px;
+        // height: 200px;
         width: 35%;
       }
       &__status {

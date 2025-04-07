@@ -32,16 +32,23 @@ export default function donatorsReducer(state, action) {
 
         case A.UPDATE_DONATORS:
             newState = structuredClone(state);
-            const donatorToUpdateIndex = newState.findIndex(d => d.name === action.payload.name);
-            if (donatorToUpdateIndex !== -1) {
-                newState[donatorToUpdateIndex].total_donated += action.payload.donation_amount;
-                newState.sort((a, b) => b.total_donated - a.total_donated)
+            const index = newState.findIndex(d => d.name === action.payload.name);
+
+            if (index !== -1) {
+                newState[index].total_donated += action.payload.donation_amount;
             } else {
-                newState.push({ name: action.payload.name, total_donated: action.payload.donation_amount })
-                newState.sort((a, b) => b.total_donated - a.total_donated)
+                newState.push({
+                    name: action.payload.name,
+                    total_donated: action.payload.donation_amount,
+                });
             }
 
+            newState = newState
+                .sort((a, b) => b.total_donated - a.total_donated)
+                .slice(0, 10);
+
             break;
+
 
         default:
             newState = state;
