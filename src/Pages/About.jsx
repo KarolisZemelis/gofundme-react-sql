@@ -61,10 +61,10 @@ export default function About() {
             <label htmlFor="message">Message:</label>
             <textarea id="message" name="message" rows="5"></textarea>
           </div>
-          <button type="submit" className="button">
-            Send Message
-          </button>
         </form>
+        <button type="submit" className="button">
+          Send Message
+        </button>
       </section>
     </div>
   );
