@@ -5,7 +5,7 @@ export default function StoryInList({ story }) {
   const { setModalStoryId, submitDonation } = useContext(Data);
   const [newDonation, setNewDonation] = useState({
     name: "",
-    donation_amount: "0",
+    donation_amount: 0,
   });
 
   if (story.status === 0) {
@@ -16,11 +16,7 @@ export default function StoryInList({ story }) {
       (story.collected_amount * 100) / story.request_amount
     )}%`,
   };
-  const MAX_LENGTH = 100;
-  const truncatedText =
-    story.text.length > MAX_LENGTH
-      ? story.text.substring(0, MAX_LENGTH) + "..."
-      : story.text;
+
   const openModal = () => {
     setModalStoryId(story.id);
   };
@@ -64,9 +60,8 @@ export default function StoryInList({ story }) {
                 type="text"
                 id="donateName"
                 maxLength="100"
-                value={
-                  newDonation ? (newDonation.name ? newDonation.name : "") : ""
-                }
+                value={newDonation?.name !== null ? newDonation.name : ""}
+                placeholder="Enter your name"
                 onChange={(e) =>
                   setNewDonation({ ...newDonation, name: e.target.value })
                 }
@@ -79,7 +74,12 @@ export default function StoryInList({ story }) {
                 id="donation_amount"
                 min={1}
                 max={story.remaining_amount}
-                value={newDonation?.donation_amount || ""}
+                placeholder="Enter amount"
+                value={
+                  newDonation?.donation_amount === 0
+                    ? ""
+                    : newDonation?.donation_amount || ""
+                }
                 onChange={(e) => {
                   const inputValue = parseInt(e.target.value);
                   const validatedValue =
@@ -103,7 +103,10 @@ export default function StoryInList({ story }) {
       )}
       <div className="stories-list__story__container">
         <div className="stories-list__story__container__text">
-          {truncatedText} {story.text.length > MAX_LENGTH}
+          {/* {truncatedText} {story.text.length > MAX_LENGTH} */}
+          {story.text.length > 100
+            ? story.text.substring(0, 100) + "..."
+            : story.text}
         </div>
       </div>
 

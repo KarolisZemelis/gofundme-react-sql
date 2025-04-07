@@ -63,12 +63,13 @@ export default function Hero() {
   };
   return (
     <div className="hero">
-      <div className="hero__randomStoryContainer" onClick={openModal}>
+      <div className="hero__randomStoryContainer">
         <div className="hero__randomStoryContainer__name">
           <h3>{capitalizeFirstLetters(heroStory.name)}</h3>
         </div>
         <div
-          className="hero__randomStoryContainer__image"
+          className="hero__randomStoryContainer__image "
+          onClick={openModal}
           style={{ "--progress": `${heroStory.progressPercentage}%` }}
         >
           <img src={heroStory.image} alt={heroStory.name} />

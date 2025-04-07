@@ -15,9 +15,9 @@
       list-style-type: none;
       border-bottom: 1px solid v.$dark-gray;
       margin-bottom: 1rem;
-
       display: flex;
       flex-direction: column;
+      padding-bottom: 1rem;
       &__name {
         height: 15rem;
         border-radius: 10px;

@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import Data from "../../Contexts/Data";
 
-export default function StoryModal({ modalStoryId, submitDonation }) {
+export default function StoryModal({}) {
   const [newDonation, setNewDonation] = useState({
     name: "",
-    donation_amount: "0",
+    donation_amount: 0,
   });
-  const { setModalStoryId, donations, stories } = useContext(Data);
+  const { setModalStoryId, modalStoryId, donations, stories, submitDonation } =
+    useContext(Data);
   const [story, setStory] = useState(null);
   const [storyDonations, setStoryDonations] = useState([]);
 
@@ -85,13 +86,8 @@ export default function StoryModal({ modalStoryId, submitDonation }) {
                   type="text"
                   id="donateName"
                   maxLength="100"
-                  value={
-                    newDonation
-                      ? newDonation.name
-                        ? newDonation.name
-                        : ""
-                      : ""
-                  }
+                  value={newDonation?.name !== null ? newDonation.name : ""}
+                  placeholder="Enter your name"
                   onChange={(e) =>
                     setNewDonation({ ...newDonation, name: e.target.value })
                   }
@@ -104,7 +100,12 @@ export default function StoryModal({ modalStoryId, submitDonation }) {
                   id="donation_amount"
                   min={1}
                   max={story.remaining_amount}
-                  value={newDonation?.donation_amount || ""}
+                  placeholder="Enter amount"
+                  value={
+                    newDonation?.donation_amount === 0
+                      ? ""
+                      : newDonation?.donation_amount || ""
+                  }
                   onChange={(e) => {
                     const inputValue = parseInt(e.target.value);
                     const validatedValue =

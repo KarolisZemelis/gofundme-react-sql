@@ -360,7 +360,6 @@ app.post('/stories/new', (req, res) => {
 });
 
 app.post('/updateStoryStatus/:id', (req, res) => {
-    console.log('test')
     const postID = req.params.id;
     const status = req.body.status === true ? 1 : 0
     const sql1 = `
