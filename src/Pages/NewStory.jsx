@@ -1,14 +1,16 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import useImage from "../Hooks/useImage";
 import Data from "../Contexts/Data";
 import Messages from "../Contexts/Messages";
 import { useNavigate } from "react-router";
 import * as C from "../Constants/main";
 import { v4 } from "uuid";
+import Auth from "../Contexts/Auth";
 
 export default function NewStory() {
   const { image, readFile, remImage } = useImage();
   const { setStoreStory } = useContext(Data);
+  const { user } = useContext(Auth);
   const { setMessages } = useContext(Messages);
   const [name, setName] = useState("");
   const [text, setText] = useState("");
@@ -34,6 +36,10 @@ export default function NewStory() {
 
     navigate(C.GO_AFTER_NEW_STORY);
   };
+
+  if (user.role === "guest") {
+    navigate(C.GO_LOGIN);
+  }
   return (
     <div className="story-form">
       <div className="story-form__top">

@@ -16,7 +16,7 @@ export default function StoryInList({ story }) {
       (story.collected_amount * 100) / story.request_amount
     )}%`,
   };
-
+  console.log(story.image);
   const openModal = () => {
     setModalStoryId(story.id);
   };
@@ -25,6 +25,7 @@ export default function StoryInList({ story }) {
       <div
         className="stories-list__story__name"
         style={{ backgroundImage: `url(${story.image})` }}
+        onClick={openModal}
       >
         <div className="stories-list__story__name__container">
           <h3>{story.name}</h3>
@@ -103,7 +104,6 @@ export default function StoryInList({ story }) {
       )}
       <div className="stories-list__story__container">
         <div className="stories-list__story__container__text">
-          {/* {truncatedText} {story.text.length > MAX_LENGTH} */}
           {story.text.length > 100
             ? story.text.substring(0, 100) + "..."
             : story.text}

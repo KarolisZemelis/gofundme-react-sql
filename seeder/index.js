@@ -200,7 +200,7 @@ const password = md5('123')
 const values = ['admin', 'admin@admin.com', password, 'admin'];
 
 con.query(sql, values, (err) => {
-    console.log(users); // Assuming 'users' is defined elsewhere and you want to log it
+
     if (err) {
         console.error('Users table seed error', err);
     } else {

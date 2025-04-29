@@ -16,3 +16,5 @@ export const GO_AFTER_LOGIN = '/';
 export const GO_AFTER_LOGOUT = '/';
 
 export const GO_AFTER_NEW_STORY = '/';
+
+export const GO_LOGIN = '/login';

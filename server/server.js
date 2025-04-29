@@ -222,7 +222,7 @@ app.get('/donations', (req, res) => {
 
 app.post('/newDonation', (req, res) => {
     const newDonation = req.body;
-    console.log('test')
+
     const sql1 = `
     INSERT INTO donations (story_id, name, donation_amount, created_at)
     VALUES (?, ?, ?, ?);

@@ -77,7 +77,7 @@ export default function Hero() {
 
         <div className="hero__randomStoryContainer__amount">
           <h4>
-            {heroStory.collected_amount} € <b>/</b> {heroStory.request_amount} €
+            {heroStory.request_amount} € <b>/</b> {heroStory.collected_amount} €
           </h4>
         </div>
 

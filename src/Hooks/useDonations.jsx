@@ -33,54 +33,6 @@ export default function useDonations() {
       });
   }, []);
 
-  // const submitDonation = (storyId, newDonation) => {
-  //   if (!newDonation?.name || !newDonation?.donation_amount) {
-  //     alert("Please fill in all fields.");
-  //     return;
-  //   }
-
-  //   axios
-  //     .post(C.SERVER_URL + "newDonation", {
-  //       ...newDonation,
-  //       story_id: storyId,
-  //       created_at: new Date().toISOString().split("T")[0],
-  //     })
-  //     .then((res) => {
-  //       setMessages((prevMessages) => {
-  //         return [
-  //           { id: v4(), type: "success", text: "Donation successful!" },
-  //           ...prevMessages,
-  //         ];
-  //       });
-  //     })
-  //     .then(() => {
-  //       dispatchDonators({
-  //         type: A.UPDATE_DONATORS,
-  //         payload: newDonation,
-  //       });
-  //       dispatchDonations({
-  //         type: A.UPDATE_DONATIONS,
-  //         payload: { ...newDonation, story_id: storyId },
-  //       });
-  //       dispatchStories({
-  //         type: A.UPDATE_STORIES,
-  //         payload: { ...newDonation, story_id: storyId },
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.error(
-  //         "Error submitting donation:",
-  //         error.response || error.message || error
-  //       );
-  //       setMessages((prevMessages) => {
-  //         return [
-  //           { id: v4(), type: "error", text: "Something went wrong!" },
-  //           ...prevMessages,
-  //         ];
-  //       });
-  //     });
-  // };
-
   return {
     donators,
     dispatchDonators,

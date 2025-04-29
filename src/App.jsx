@@ -4,6 +4,7 @@ import { AuthProvider } from "./Contexts/Auth";
 import { MessagesProvider } from "./Contexts/Messages";
 import Nav from "./Components/Navigation/Nav";
 import Body from "./Components/Body";
+import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Page404 from "./Pages/Page404";
@@ -11,7 +12,6 @@ import Login from "./Pages/Login";
 import Logout from "./Pages/Logout";
 import Admin from "./Pages/Admin";
 import NewStory from "./Pages/NewStory";
-import Footer from "./Components/Footer";
 
 function App() {
   return (

@@ -33,7 +33,6 @@ export const DataProvider = ({ children }) => {
   };
 
   const submitDonation = (storyId, newDonation) => {
-    console.log("*************************************");
     if (!newDonation?.name || !newDonation?.donation_amount) {
       alert("Please fill in all fields.");
       return;
