@@ -49,9 +49,6 @@ const error400 = (res, customCode = 0) => res.status(400).json({
 const error401 = (res, message) => res.status(401).json({
     msg: { type: 'error', text: message }
 });
-// Identifikacija - pagal numatytą ID identifikuojam vartotoją pvz Ragana-su-šluota
-// Autorizacija - pagal vartotojo identifikuotą ID, vartuotojui suteikiamos teisės pvz gali balsuoti, pirkti cigatertes
-// Autentifikacija - pagal numatytą ID autentifikuojam vartotoją, pvz Arvydas Kijakauskas a/k 555555555
 
 const saveImageAsFile = imageBase64String => {
 
